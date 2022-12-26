@@ -6,9 +6,8 @@
  * @flow strict-local
  */
 
-import React, {useState} from 'react';
+import React from 'react';
 import type {Node} from 'react';
-import {Text, Image, View, TextInput, TouchableOpacity} from 'react-native';
 
 import {NavigationContainer} from '@react-navigation/native';
 import {GestureHandlerRootView} from 'react-native-gesture-handler';

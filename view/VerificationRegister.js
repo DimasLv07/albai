@@ -1,14 +1,7 @@
 import React, {useState} from 'react';
-import {
-  SafeAreaView,
-  Text,
-  View,
-  StyleSheet,
-  TouchableOpacity,
-  Image,
-  ScrollView,
-} from 'react-native';
+import {Text, View, StyleSheet, TouchableOpacity, Image} from 'react-native';
 import HideWithKeyboard from 'react-native-hide-with-keyboard';
+import {useNavigation} from '@react-navigation/native';
 
 import {ImagesAssets} from '../assets/ImagesAssets';
 
@@ -109,7 +102,7 @@ const VerificationRegister = () => {
     value,
     setValue,
   });
-
+  const nav = useNavigation();
   return (
     <View style={styles.root}>
       <View style={styles.container}>
@@ -139,7 +132,10 @@ const VerificationRegister = () => {
             </View>
           )}
         />
-        <TouchableOpacity style={styles.loginScreenButton} underlayColor="#fff">
+        <TouchableOpacity
+          onPress={() => nav.navigate('Home')}
+          style={styles.loginScreenButton}
+          underlayColor="#fff">
           <Text style={styles.loginText1}>Next</Text>
         </TouchableOpacity>
         <Text style={styles.error}>

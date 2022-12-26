@@ -3,4 +3,13 @@ export const ImagesAssets = {
   sand: require('./sand-bg.png'),
   facebook_logo: require('./facebook_logo.png'),
   google_logo: require('./google_logo.png'),
+  bintang: require('./bintang.png'),
+  rumah: require('./rumah.png'),
+  freeShipping: require('./freeshipping.png'),
+  imageBannerExample: require('./imageBannerExample.png'),
+  categoriesCardImage: require('./categoriesCardImage.png'),
+  checkBrown: require('./checkBrown.png'),
+  lokasiLogo: require('./lokasiLogo.png'),
+  profileToko: require('./profileToko.png'),
+  profileUser: require('./profileUser.png'),
 };

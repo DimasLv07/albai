@@ -1,19 +1,12 @@
 import React, {useState, useEffect} from 'react';
-import {
-  Text,
-  Image,
-  View,
-  TextInput,
-  TouchableOpacity,
-  ScrollView,
-  StyleSheet,
-} from 'react-native';
+import {Text, Image, View, TextInput, TouchableOpacity} from 'react-native';
 import HideWithKeyboard from 'react-native-hide-with-keyboard';
 
 import {ImagesAssets} from '../assets/ImagesAssets';
 import BouncyCheckbox from 'react-native-bouncy-checkbox';
 
 import {useNavigation, useIsFocused} from '@react-navigation/native';
+
 var styles = require('./style/styles');
 
 const LoginScreen = () => {
@@ -21,12 +14,11 @@ const LoginScreen = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [emailError, setEmailError] = useState('');
-  const [passwordError, setPasswordError] = useState('');
-  const [borderColor, setBorderColor] = useState('DDDFE2');
+  // const [passwordError, setPasswordError] = useState('');
 
   useEffect(() => {
     setEmailError(null);
-    setPasswordError(null);
+    // setPasswordError(null);
   }, [isFocused]);
 
   const handlerEmail = val => {
@@ -40,15 +32,17 @@ const LoginScreen = () => {
   };
 
   const handlerLogin = () => {
-    if (email === '' || password === '')
+    if (email === '' || password === '') {
       setEmailError(
         'Sorry, your password or email was incorrect. Please double-check your password',
       );
+    }
 
     if (email !== '' && password !== '') {
       nav.navigate('Home');
     }
   };
+
   const nav = useNavigation();
   return (
     <View style={styles.container}>
@@ -139,7 +133,7 @@ const LoginScreen = () => {
             </View>
           </TouchableOpacity>
 
-          <View style={styles.pemisah}></View>
+          <View style={styles.pemisah} />
           <TouchableOpacity
             style={styles.sign}
             onPress={() => {

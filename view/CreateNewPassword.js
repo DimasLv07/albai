@@ -27,7 +27,8 @@ const VerificationInputPassword = () => {
 
             <TouchableOpacity
               style={[styles.loginScreenButton, styles.loginTextInput]}
-              underlayColor="#fff">
+              underlayColor="#fff"
+              onPress={() => nav.navigate('Login')}>
               <Text style={styles.loginText1}>Next</Text>
             </TouchableOpacity>
           </View>

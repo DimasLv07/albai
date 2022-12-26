@@ -1,14 +1,6 @@
 import React, {useState, useEffect} from 'react';
-import {
-  Text,
-  Image,
-  View,
-  TextInput,
-  TouchableOpacity,
-  ScrollView,
-} from 'react-native';
+import {Text, Image, View, TextInput, TouchableOpacity} from 'react-native';
 import {ImagesAssets} from '../assets/ImagesAssets';
-import BouncyCheckbox from 'react-native-bouncy-checkbox';
 import {useNavigation, useIsFocused} from '@react-navigation/native';
 
 var styles = require('./style/styles');
@@ -19,12 +11,12 @@ const RegisterScreen = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [emailError, setEmailError] = useState('');
-  const [passwordError, setPasswordError] = useState('');
-  const [borderColor, setBorderColor] = useState('DDDFE2');
+  // const [passwordError, setPasswordError] = useState('');
+  // const [borderColor, setBorderColor] = useState('DDDFE2');
 
   useEffect(() => {
     setEmailError(null);
-    setPasswordError(null);
+    // setPasswordError(null);
   }, [isFocused]);
 
   const handlerEmail = val => {
@@ -43,8 +35,9 @@ const RegisterScreen = () => {
   };
 
   const handlerLogin = () => {
-    if (email === '' || password === '' || name === '')
+    if (email === '' || password === '' || name === '') {
       setEmailError('Sorry, something wrong with your personal data');
+    }
 
     if (email !== '' && password !== '' && name !== '') {
       nav.navigate('Email Verification');

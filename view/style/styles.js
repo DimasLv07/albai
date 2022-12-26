@@ -6,6 +6,10 @@ const styles = React.StyleSheet.create({
   container: {
     flex: 1,
   },
+
+  brownText: {
+    color: '#AC8B75',
+  },
   loginScreenButton: {
     paddingTop: 10,
     paddingBottom: 10,
@@ -231,6 +235,202 @@ const styles = React.StyleSheet.create({
     fontSize: 20,
     width: '40%',
     alignSelf: 'center',
+  },
+
+  textCategories: {
+    fontWeight: 'bold',
+    fontSize: 16,
+    color: 'black',
+  },
+
+  tabs: {
+    flex: 1,
+    height: 750,
+  },
+
+  viewMainHome: {
+    padding: 20,
+  },
+
+  containerPP: {
+    flexDirection: 'row',
+    marginBottom: 10,
+    justifyContent: 'space-between',
+  },
+
+  empatPuluh: {
+    backgroundColor: '#FF0000',
+    opacity: 0.2,
+    fontSize: 9,
+    paddingLeft: 3,
+    paddingRight: 3,
+    marginLeft: 5,
+    alignSelf: 'flex-start',
+    borderRadius: 2,
+  },
+
+  albaiCardTitle: {
+    fontWeight: 'SemiBold',
+    fontSize: 13,
+  },
+
+  freeShipping: {
+    width: 70,
+    height: 23,
+  },
+
+  logoAlbaiPromo: {
+    width: 14,
+    height: 14,
+  },
+
+  containerP: {
+    padding: 10,
+  },
+
+  textSampingLogoAlbai: {
+    fontSize: 10,
+    marginLeft: 5,
+  },
+
+  albaiCardHarga: {
+    fontSize: 14,
+    fontWeight: 'bold',
+  },
+
+  albaiPromoContent: {
+    paddingLeft: 10,
+    paddingRight: 10,
+  },
+
+  albaiPromoMerahContainer: {
+    flexDirection: 'row',
+  },
+
+  albaiLogoContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
+
+  categoriesTitle: {
+    textAlign: 'center',
+    paddingTop: 10,
+  },
+
+  albaiCardHargaPromo: {
+    textDecorationLine: 'line-through',
+    fontSize: 11,
+  },
+
+  cardCategoriesImage: {
+    height: 80,
+  },
+
+  cpluss: {
+    marginTop: 20,
+    marginBottom: 20,
+    justifyContent: 'space-between',
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
+
+  cardCategoriesContainer: {
+    flexDirection: 'row',
+    paddingBottom: 5,
+  },
+
+  cardAlbaiContainer: {
+    marginBottom: 10,
+    flexDirection: 'row',
+    paddingBottom: 5,
+  },
+
+  cardCategoriesContainer1: {
+    flexDirection: 'row',
+    paddingBottom: 5,
+  },
+
+  cardAlbai: {
+    marginRight: 20,
+    width: 130,
+    height: 300,
+  },
+
+  cardAlbaiTab: {
+    marginRight: 10,
+    width: 160,
+    height: 330,
+  },
+
+  cardAlbaiImage: {
+    height: 110,
+  },
+
+  cardAlbaiImageTab: {
+    height: 150,
+  },
+
+  cardCategories: {
+    width: 130,
+    height: 130,
+    marginRight: 20,
+  },
+
+  imagePromoBanner: {
+    width: '100%',
+    height: 170,
+  },
+
+  containerP2: {
+    padding: 10,
+  },
+
+  filterContainer: {
+    flexDirection: 'row',
+    marginTop: 20,
+    marginBottom: 20,
+    alignItems: 'center',
+  },
+
+  filterTextButtonHightLight: {
+    fontSize: 10,
+    color: 'white',
+  },
+
+  filterTextButton: {
+    fontSize: 10,
+    color: 'black',
+  },
+
+  filterButtonHightLight: {
+    backgroundColor: '#E3CAA5',
+    padding: 8,
+    paddingLeft: 20,
+    paddingRight: 20,
+    borderRadius: 7,
+  },
+
+  filterButton: {
+    backgroundColor: '#fff',
+    borderColor: 'black',
+    borderWidth: 1,
+    padding: 8,
+    paddingLeft: 20,
+    paddingRight: 20,
+    borderRadius: 7,
+    marginLeft: 10,
+  },
+
+  filterTitle: {
+    backgroundColor: '#AC8B75',
+    alignSelf: 'center',
+    marginRight: 10,
+    padding: 10,
+  },
+
+  filterText: {
+    fontSize: 16,
+    color: 'white',
   },
 });
 

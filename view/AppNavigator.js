@@ -7,7 +7,11 @@ import VerificationRegister from './VerificationRegister';
 import VerificationPassword from './VerificationPassword';
 import VerificationInputPassword from './VerificationInputPassword';
 import CreateNewPassword from './CreateNewPassword';
-import {CarouselExample} from './test';
+import HomeScreen from './Home';
+import PromoScreen from './Promo';
+import CategoriesScreen from './Categories';
+import CategoryDetail from './CategoryDetail';
+import ItemDetail from './ItemDetail';
 
 const Stack = createStackNavigator();
 
@@ -34,7 +38,11 @@ const AppNavigator = () => (
       component={VerificationInputPassword}
     />
     <Stack.Screen name="CreateNewPassword" component={CreateNewPassword} />
-    <Stack.Screen name="CarouselExample" component={CarouselExample} />
+    <Stack.Screen name="Promo" component={PromoScreen} />
+    <Stack.Screen name="Categories" component={CategoriesScreen} />
+    <Stack.Screen name="Home" component={HomeScreen} />
+    <Stack.Screen name="CategoryDetail" component={CategoryDetail} />
+    <Stack.Screen name="ItemDetail" component={ItemDetail} />
   </Stack.Navigator>
 );
 
