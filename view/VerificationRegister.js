@@ -106,11 +106,13 @@ const VerificationRegister = () => {
   return (
     <View style={styles.root}>
       <View style={styles.container}>
-        <Text style={styles.title}>Input your verification code</Text>
-        <Text style={styles.subtitle}>
+        <Text style={[styles.title, styles.nunitoSans]}>
+          Input your verification code
+        </Text>
+        <Text style={[styles.subtitle, styles.nunitoSans]}>
           We have sent the verification code to contohaja@gmail.com
         </Text>
-        <Text style={styles.veri}>Verification Code</Text>
+        <Text style={[styles.veri, styles.nunitoSans]}>Verification Code</Text>
         <CodeField
           ref={ref}
           {...props}
@@ -126,7 +128,7 @@ const VerificationRegister = () => {
               onLayout={getCellOnLayoutHandler(index)}
               key={index}
               style={[styles.cellRoot, isFocused && styles.focusCell]}>
-              <Text style={styles.cellText}>
+              <Text style={[styles.cellText, styles.nunitoSans]}>
                 {symbol || (isFocused ? <Cursor /> : null)}
               </Text>
             </View>
@@ -136,11 +138,15 @@ const VerificationRegister = () => {
           onPress={() => nav.navigate('Home')}
           style={styles.loginScreenButton}
           underlayColor="#fff">
-          <Text style={styles.loginText1}>Next</Text>
+          <Text style={[styles.loginText1, styles.nunitoSans]}>Next</Text>
         </TouchableOpacity>
         <Text style={styles.error}>
-          Didnt recieve the code? <Text style={styles.brownText}>Resend</Text>{' '}
-          or Register <Text style={styles.brownText}>with Phone Number</Text>
+          Didnt recieve the code?{' '}
+          <Text style={[styles.brownText, styles.nunitoSans]}>Resend</Text> or
+          Register{' '}
+          <Text style={[styles.brownText, styles.nunitoSans]}>
+            with Phone Number
+          </Text>
         </Text>
       </View>
       <HideWithKeyboard style={styles.sand}>

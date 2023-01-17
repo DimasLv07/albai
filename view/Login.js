@@ -1,11 +1,20 @@
 import React, {useState, useEffect} from 'react';
-import {Text, Image, View, TextInput, TouchableOpacity} from 'react-native';
+import {
+  Text,
+  Image,
+  View,
+  TextInput,
+  TouchableOpacity,
+  Pressable,
+} from 'react-native';
 import HideWithKeyboard from 'react-native-hide-with-keyboard';
 
 import {ImagesAssets} from '../assets/ImagesAssets';
 import BouncyCheckbox from 'react-native-bouncy-checkbox';
 
 import {useNavigation, useIsFocused} from '@react-navigation/native';
+import Icon from 'react-native-vector-icons/FontAwesome';
+import {useTogglePasswordVisibility} from './useTogglePasswordVisibility';
 
 var styles = require('./style/styles');
 
@@ -14,6 +23,9 @@ const LoginScreen = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [emailError, setEmailError] = useState('');
+  const {passwordVisibility, rightIcon, handlePasswordVisibility} =
+    useTogglePasswordVisibility();
+
   // const [passwordError, setPasswordError] = useState('');
 
   useEffect(() => {
@@ -49,23 +61,33 @@ const LoginScreen = () => {
       <View style={styles.view1}>
         <Image source={ImagesAssets.logo} style={styles.logo} />
         <View style={styles.loginPage}>
-          <Text style={styles.loginText}>Login</Text>
+          <Text style={[styles.loginText, styles.nunitoSans]}>Login</Text>
           <View style={styles.inputMain}>
             <Text style={styles.labelInput}>Phone Number / Email</Text>
-            <View style={styles.inputContainer}>
+            <View style={[styles.inputContainer, styles.nunitoSans]}>
               <TextInput
-                style={styles.textInput}
+                style={[styles.textInput, styles.nunitoSans]}
                 placeholder={''}
                 onChangeText={value => handlerEmail(value)}
               />
             </View>
-            <Text style={styles.labelInput}>Password</Text>
+            <Text style={[styles.labelInput, styles.nunitoSans]}>Password</Text>
             <View style={styles.inputContainer}>
               <TextInput
-                style={styles.textInput}
+                style={[styles.textInput, styles.nunitoSans]}
                 onChangeText={value => handlerPassword(value)}
                 placeholder={''}
+                value={password}
+                enablesReturnKeyAutomatically
+                autoCapitalize="none"
+                secureTextEntry={passwordVisibility}
               />
+              <Pressable onPress={handlePasswordVisibility}>
+                <Text>
+                  {' '}
+                  <Icon name={rightIcon} size={19} color="#232323" />
+                </Text>
+              </Pressable>
             </View>
 
             <View style={styles.checkboxContainer}>
@@ -78,11 +100,15 @@ const LoginScreen = () => {
 
                   // style={styles.checkbox}
                 />
-                <Text style={styles.label}>Simpan Info Login</Text>
+                <Text style={[styles.label, styles.nunitoSans]}>
+                  Simpan Info Login
+                </Text>
               </View>
               <TouchableOpacity
                 onPress={() => nav.navigate('VerificationInputPassword')}>
-                <Text style={styles.labelForgot}>Forget Password?</Text>
+                <Text style={[styles.labelForgot, styles.nunitoSans]}>
+                  Forget Password?
+                </Text>
               </TouchableOpacity>
             </View>
             {!!emailError && (
@@ -97,6 +123,7 @@ const LoginScreen = () => {
                   padding: 5,
                   borderRadius: 6,
                   marginBottom: 5,
+                  fontFamily: 'NunitoSans-Regular',
                 }}>
                 {emailError}
               </Text>
@@ -105,14 +132,14 @@ const LoginScreen = () => {
               style={styles.loginScreenButton}
               onPress={() => handlerLogin()}
               underlayColor="#fff">
-              <Text style={styles.loginText1}>Next</Text>
+              <Text style={[styles.loginText1, styles.nunitoSans]}>Next</Text>
             </TouchableOpacity>
           </View>
         </View>
         <View style={styles.or}>
           <View style={styles.orLine} />
           <View>
-            <Text style={styles.orText}>OR</Text>
+            <Text style={[styles.orText, styles.nunitoSans]}>OR</Text>
           </View>
           <View style={styles.orLine} />
         </View>
@@ -129,7 +156,7 @@ const LoginScreen = () => {
                 source={ImagesAssets.google_logo}
                 style={styles.signLogo}
               />
-              <Text style={styles.signText}>Google</Text>
+              <Text style={[styles.signText, styles.nunitoSans]}>Google</Text>
             </View>
           </TouchableOpacity>
 
@@ -144,14 +171,19 @@ const LoginScreen = () => {
                 source={ImagesAssets.facebook_logo}
                 style={styles.signLogo}
               />
-              <Text style={styles.signText}>Facebook</Text>
+              <Text style={[styles.signText, styles.nunitoSans]}>Facebook</Text>
             </View>
           </TouchableOpacity>
         </View>
         <View style={styles.containerRegisterAcc}>
-          <Text style={styles.registerText}>Dont have an account? </Text>
+          <Text style={[styles.registerText, styles.nunitoSans]}>
+            Dont have an account?{' '}
+          </Text>
           <TouchableOpacity onPress={() => nav.navigate('Register')}>
-            <Text style={[styles.register, styles.registerText]}>Register</Text>
+            <Text
+              style={[styles.register, styles.registerText, styles.nunitoSans]}>
+              Register
+            </Text>
           </TouchableOpacity>
         </View>
       </View>

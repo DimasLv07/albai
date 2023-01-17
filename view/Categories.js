@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 
 import {ImagesAssets} from '../assets/ImagesAssets';
 
@@ -10,8 +10,12 @@ import {
   ScrollView,
   ImageBackground,
 } from 'react-native';
+import {useNavigation, useIsFocused} from '@react-navigation/native';
+import Icon from 'react-native-vector-icons/Ionicons';
+import IconAwesome from 'react-native-vector-icons/FontAwesome';
+import IconMaterial from 'react-native-vector-icons/MaterialIcons';
 
-import {useNavigation} from '@react-navigation/native';
+import {CardCategoryDetail} from './components';
 
 var styles = require('./style/styles');
 
@@ -23,150 +27,29 @@ const CategoriesScreen = () => {
         <View style={stylePribadi.viewCategories}>
           <Text style={stylePribadi.allCategories}>All Categories</Text>
           <View style={stylePribadi.cardCategoriesContainer}>
-            <TouchableOpacity
-              onPress={() => nav.navigate('CategoryDetail')}
-              style={stylePribadi.cardCategories}>
-              <ImageBackground
-                style={stylePribadi.cardCategories}
-                source={ImagesAssets.categoriesCardImage}>
-                <View style={stylePribadi.textImageCardCategories}>
-                  <Text style={stylePribadi.textImageCardCategoriesColor}>
-                    Foods
-                  </Text>
-                </View>
-              </ImageBackground>
-            </TouchableOpacity>
-
+            <CardCategoryDetail />
             <View style={stylePribadi.pemisahCardCategories} />
-            <TouchableOpacity
-              onPress={() => nav.navigate('CategoryDetail')}
-              style={stylePribadi.cardCategories}>
-              <ImageBackground
-                style={stylePribadi.cardCategories}
-                source={ImagesAssets.categoriesCardImage}>
-                <View style={stylePribadi.textImageCardCategories}>
-                  <Text style={stylePribadi.textImageCardCategoriesColor}>
-                    Foods
-                  </Text>
-                </View>
-              </ImageBackground>
-            </TouchableOpacity>
+            <CardCategoryDetail />
           </View>
           <View style={stylePribadi.cardCategoriesContainer}>
-            <TouchableOpacity
-              onPress={() => nav.navigate('CategoryDetail')}
-              style={stylePribadi.cardCategories}>
-              <ImageBackground
-                style={stylePribadi.cardCategories}
-                source={ImagesAssets.categoriesCardImage}>
-                <View style={stylePribadi.textImageCardCategories}>
-                  <Text style={stylePribadi.textImageCardCategoriesColor}>
-                    Foods
-                  </Text>
-                </View>
-              </ImageBackground>
-            </TouchableOpacity>
+            <CardCategoryDetail />
             <View style={stylePribadi.pemisahCardCategories} />
-            <TouchableOpacity
-              onPress={() => nav.navigate('CategoryDetail')}
-              style={stylePribadi.cardCategories}>
-              <ImageBackground
-                style={stylePribadi.cardCategories}
-                source={ImagesAssets.categoriesCardImage}>
-                <View style={stylePribadi.textImageCardCategories}>
-                  <Text style={stylePribadi.textImageCardCategoriesColor}>
-                    Foods
-                  </Text>
-                </View>
-              </ImageBackground>
-            </TouchableOpacity>
+            <CardCategoryDetail />
           </View>
           <View style={stylePribadi.cardCategoriesContainer}>
-            <TouchableOpacity
-              onPress={() => nav.navigate('CategoryDetail')}
-              style={stylePribadi.cardCategories}>
-              <ImageBackground
-                style={stylePribadi.cardCategories}
-                source={ImagesAssets.categoriesCardImage}>
-                <View style={stylePribadi.textImageCardCategories}>
-                  <Text style={stylePribadi.textImageCardCategoriesColor}>
-                    Foods
-                  </Text>
-                </View>
-              </ImageBackground>
-            </TouchableOpacity>
+            <CardCategoryDetail />
             <View style={stylePribadi.pemisahCardCategories} />
-            <TouchableOpacity
-              onPress={() => nav.navigate('CategoryDetail')}
-              style={stylePribadi.cardCategories}>
-              <ImageBackground
-                style={stylePribadi.cardCategories}
-                source={ImagesAssets.categoriesCardImage}>
-                <View style={stylePribadi.textImageCardCategories}>
-                  <Text style={stylePribadi.textImageCardCategoriesColor}>
-                    Foods
-                  </Text>
-                </View>
-              </ImageBackground>
-            </TouchableOpacity>
+            <CardCategoryDetail />
           </View>
           <View style={stylePribadi.cardCategoriesContainer}>
-            <TouchableOpacity
-              onPress={() => nav.navigate('CategoryDetail')}
-              style={stylePribadi.cardCategories}>
-              <ImageBackground
-                style={stylePribadi.cardCategories}
-                source={ImagesAssets.categoriesCardImage}>
-                <View style={stylePribadi.textImageCardCategories}>
-                  <Text style={stylePribadi.textImageCardCategoriesColor}>
-                    Foods
-                  </Text>
-                </View>
-              </ImageBackground>
-            </TouchableOpacity>
+            <CardCategoryDetail />
             <View style={stylePribadi.pemisahCardCategories} />
-            <TouchableOpacity
-              onPress={() => nav.navigate('CategoryDetail')}
-              style={stylePribadi.cardCategories}>
-              <ImageBackground
-                style={stylePribadi.cardCategories}
-                source={ImagesAssets.categoriesCardImage}>
-                <View style={stylePribadi.textImageCardCategories}>
-                  <Text style={stylePribadi.textImageCardCategoriesColor}>
-                    Foods
-                  </Text>
-                </View>
-              </ImageBackground>
-            </TouchableOpacity>
+            <CardCategoryDetail />
           </View>
           <View style={stylePribadi.cardCategoriesContainer}>
-            <TouchableOpacity
-              onPress={() => nav.navigate('CategoryDetail')}
-              style={stylePribadi.cardCategories}>
-              <ImageBackground
-                style={stylePribadi.cardCategories}
-                source={ImagesAssets.categoriesCardImage}>
-                <View style={stylePribadi.textImageCardCategories}>
-                  <Text style={stylePribadi.textImageCardCategoriesColor}>
-                    Foods
-                  </Text>
-                </View>
-              </ImageBackground>
-            </TouchableOpacity>
+            <CardCategoryDetail />
             <View style={stylePribadi.pemisahCardCategories} />
-            <TouchableOpacity
-              onPress={() => nav.navigate('CategoryDetail')}
-              style={stylePribadi.cardCategories}>
-              <ImageBackground
-                style={stylePribadi.cardCategories}
-                source={ImagesAssets.categoriesCardImage}>
-                <View style={stylePribadi.textImageCardCategories}>
-                  <Text style={stylePribadi.textImageCardCategoriesColor}>
-                    Foods
-                  </Text>
-                </View>
-              </ImageBackground>
-            </TouchableOpacity>
+            <CardCategoryDetail />
           </View>
         </View>
       </View>

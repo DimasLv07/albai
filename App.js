@@ -8,7 +8,14 @@
 
 import React from 'react';
 import type {Node} from 'react';
-
+import {
+  Text,
+  View,
+  TouchableOpacity,
+  StyleSheet,
+  ScrollView,
+  ImageBackground,
+} from 'react-native';
 import {NavigationContainer} from '@react-navigation/native';
 import {GestureHandlerRootView} from 'react-native-gesture-handler';
 
@@ -24,6 +31,7 @@ const App: () => Node = () => {
         <AppNavigator />
       </NavigationContainer>
     </GestureHandlerRootView>
+    // <Text>s</Text>
   );
 };
 

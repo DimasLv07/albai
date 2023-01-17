@@ -5,6 +5,22 @@ var React = require('react-native');
 const styles = React.StyleSheet.create({
   container: {
     flex: 1,
+    backgroundColor: '#FAFAFA',
+    // fontWeight: 'bold',
+  },
+
+  containerCategory: {
+    backgroundColor: 'white',
+    // padding: -10,
+    paddingTop: 10,
+    padding: 20,
+    marginBottom: 10,
+  },
+  containerPromo: {
+    backgroundColor: 'white',
+    // padding: -10,
+    padding: 20,
+    marginBottom: 10,
   },
 
   brownText: {
@@ -60,10 +76,20 @@ const styles = React.StyleSheet.create({
     marginBottom: 5,
     borderRadius: 10,
     borderColor: '#525252',
+    flexDirection: 'row',
+    alignItems: 'center',
   },
 
   textInput: {
     fontSize: 10,
+    paddingLeft: 10,
+    width: '90%',
+  },
+
+  textInputCreateProduct: {
+    fontSize: 10,
+    paddingLeft: 10,
+    width: '90%',
   },
 
   signLogo: {
@@ -76,6 +102,10 @@ const styles = React.StyleSheet.create({
     fontWeight: 'bold',
     fontSize: 18,
     marginBottom: 4,
+  },
+
+  nunitoSans: {
+    fontFamily: 'NunitoSans-Regular',
   },
 
   checkInner: {
@@ -246,10 +276,7 @@ const styles = React.StyleSheet.create({
   tabs: {
     flex: 1,
     height: 750,
-  },
-
-  viewMainHome: {
-    padding: 20,
+    backgroundColor: 'white',
   },
 
   containerPP: {
@@ -272,11 +299,6 @@ const styles = React.StyleSheet.create({
   albaiCardTitle: {
     fontWeight: 'SemiBold',
     fontSize: 13,
-  },
-
-  freeShipping: {
-    width: 70,
-    height: 23,
   },
 
   logoAlbaiPromo: {
@@ -357,9 +379,13 @@ const styles = React.StyleSheet.create({
   },
 
   cardAlbaiTab: {
-    marginRight: 10,
-    width: 160,
+    width: 165,
     height: 330,
+  },
+
+  cardAlbaiTabButton: {
+    width: 165,
+    height: 350,
   },
 
   cardAlbaiImage: {
@@ -394,7 +420,7 @@ const styles = React.StyleSheet.create({
 
   filterTextButtonHightLight: {
     fontSize: 10,
-    color: 'white',
+    color: 'black',
   },
 
   filterTextButton: {
@@ -408,6 +434,41 @@ const styles = React.StyleSheet.create({
     paddingLeft: 20,
     paddingRight: 20,
     borderRadius: 7,
+  },
+
+  headerContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
+
+  inputContainerHeader: {
+    borderLeftWidth: 1,
+    borderRightWidth: 1,
+    borderTopWidth: 1,
+    borderBottomWidth: 1,
+    height: 40,
+    marginBottom: 5,
+    borderRadius: 10,
+    borderColor: '#525252',
+    backgroundColor: 'white',
+    flexDirection: 'row',
+    alignItems: 'center',
+    width: '70%',
+    marginLeft: 10,
+  },
+  textInputHeader: {
+    fontSize: 10,
+    paddingLeft: 10,
+    width: '90%',
+  },
+
+  headerMain: {
+    padding: 20,
+    backgroundColor: '#E3CAA5',
+  },
+
+  iconHeader: {
+    marginLeft: 5,
   },
 
   filterButton: {
@@ -431,6 +492,187 @@ const styles = React.StyleSheet.create({
   filterText: {
     fontSize: 16,
     color: 'white',
+  },
+
+  box: {
+    height: 250,
+    width: '100%',
+  },
+  boxA: {
+    backgroundColor: 'white',
+  },
+  boxB: {
+    backgroundColor: '#D8D8D8',
+  },
+  header: {
+    height: 250,
+    width: '100%',
+  },
+
+  bintangItemDetail: {
+    alignSelf: 'center',
+    width: 15,
+    height: 15,
+  },
+
+  filterButtonHightLightItemDetail: {
+    backgroundColor: 'rgba(227, 202, 165, 0.5)',
+    padding: 8,
+    paddingLeft: 20,
+    paddingRight: 20,
+    borderRadius: 7,
+    borderWidth: 1,
+    borderColor: '#E3CAA5',
+  },
+
+  komenUser: {
+    fontSize: 13,
+    marginBottom: 3,
+    color: '#282828',
+  },
+
+  tanggalReview: {
+    marginBottom: 10,
+    fontSize: 12,
+  },
+
+  cartContainer: {
+    padding: 10,
+  },
+
+  chatNowText: {
+    marginLeft: 5,
+    color: '#AC8B75',
+  },
+  addToCartText: {
+    marginLeft: 5,
+    color: 'white',
+  },
+
+  chatNowButton: {
+    borderColor: '#AC8B75',
+    borderWidth: 1,
+    flexDirection: 'row',
+    alignItems: 'center',
+    flex: 1,
+    justifyContent: 'center',
+    padding: 10,
+    borderRadius: 5,
+  },
+
+  seeAllReview: {
+    fontSize: 17,
+    textAlign: 'center',
+    marginBottom: 15,
+  },
+
+  addToCart: {
+    backgroundColor: '#AC8B75',
+    flexDirection: 'row',
+    alignItems: 'center',
+    flex: 1,
+    justifyContent: 'center',
+    padding: 10,
+    borderRadius: 5,
+  },
+
+  containerHighReview: {
+    marginTop: 10,
+    padding: 10,
+    borderColor: '#D7D7D7',
+    backgroundColor: 'white',
+    borderWidth: 1,
+    marginBottom: 10,
+  },
+
+  profileTokoText: {
+    marginLeft: 10,
+  },
+
+  rowJauh: {
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
+
+  tanggalUserKome: {
+    fontSize: 9,
+  },
+
+  reviewText: {
+    fontSize: 17,
+    fontWeight: 'bold',
+    color: 'black',
+    marginBottom: 5,
+  },
+
+  profileUser: {
+    marginTop: 15,
+    width: 55,
+    height: 55,
+    borderRadius: 5,
+    marginBottom: 5,
+  },
+
+  textAlignCenter: {
+    textAlign: 'center',
+  },
+
+  profileTokoReview: {
+    flexDirection: 'row',
+    justifyContent: 'space-evenly',
+  },
+
+  profileToko: {
+    width: 43,
+    height: 43,
+  },
+
+  row: {
+    flexDirection: 'row',
+  },
+
+  lokasiLogo: {
+    width: 7.5,
+    alignSelf: 'center',
+    height: 11,
+  },
+
+  productDescDesc: {
+    marginBottom: 5,
+  },
+
+  titleProductSatu: {
+    marginTop: 10,
+    marginBottom: 10,
+  },
+  content: {
+    padding: 15,
+  },
+
+  titleProduct: {
+    fontWeight: 'bold',
+    color: 'black',
+  },
+
+  harga: {
+    fontSize: 18,
+    marginRight: 10,
+    fontWeight: 'bold',
+    color: 'black',
+  },
+
+  pertama: {
+    alignItems: 'center',
+  },
+
+  freeShipping: {
+    width: 60,
+    height: 20,
+  },
+
+  checkBrown: {
+    width: 13,
+    height: 16,
   },
 });
 

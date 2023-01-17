@@ -12,4 +12,5 @@ export const ImagesAssets = {
   lokasiLogo: require('./lokasiLogo.png'),
   profileToko: require('./profileToko.png'),
   profileUser: require('./profileUser.png'),
+  toko: require('./toko.png'),
 };

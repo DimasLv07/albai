@@ -1,7 +1,16 @@
 import React, {useState, useEffect} from 'react';
-import {Text, Image, View, TextInput, TouchableOpacity} from 'react-native';
+import {
+  Text,
+  Image,
+  View,
+  TextInput,
+  TouchableOpacity,
+  Pressable,
+} from 'react-native';
 import {ImagesAssets} from '../assets/ImagesAssets';
 import {useNavigation, useIsFocused} from '@react-navigation/native';
+import {useTogglePasswordVisibility} from './useTogglePasswordVisibility';
+import Icon from 'react-native-vector-icons/FontAwesome';
 
 var styles = require('./style/styles');
 
@@ -11,6 +20,8 @@ const RegisterScreen = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [emailError, setEmailError] = useState('');
+  const {passwordVisibility, rightIcon, handlePasswordVisibility} =
+    useTogglePasswordVisibility();
   // const [passwordError, setPasswordError] = useState('');
   // const [borderColor, setBorderColor] = useState('DDDFE2');
 
@@ -49,31 +60,45 @@ const RegisterScreen = () => {
       <View style={styles.view1}>
         <Image source={ImagesAssets.logo} style={styles.logo} />
         <View style={styles.loginPage}>
-          <Text style={styles.loginText}>Register</Text>
+          <Text style={[styles.loginText, styles.nunitoSans]}>Register</Text>
           <View style={styles.inputMain}>
-            <Text style={styles.labelInput}>Full Name</Text>
+            <Text style={[styles.labelInput, styles.nunitoSans]}>
+              Full Name
+            </Text>
             <View style={styles.inputContainer}>
               <TextInput
-                style={styles.textInput}
+                style={[styles.textInput, styles.nunitoSans]}
                 onChangeText={value => handlerName(value)}
                 placeholder={''}
               />
             </View>
-            <Text style={styles.labelInput}>Phone Number / Email</Text>
+            <Text style={[styles.labelInput, styles.nunitoSans]}>
+              Phone Number / Email
+            </Text>
             <View style={styles.inputContainer}>
               <TextInput
-                style={styles.textInput}
+                style={[styles.textInput, styles.nunitoSans]}
                 onChangeText={value => handlerEmail(value)}
                 placeholder={''}
               />
             </View>
-            <Text style={styles.labelInput}>Password</Text>
+            <Text style={[styles.labelInput, styles.nunitoSans]}>Password</Text>
             <View style={styles.inputContainer}>
               <TextInput
-                style={styles.textInput}
+                style={[styles.textInput, styles.nunitoSans]}
                 onChangeText={value => handlerPassword(value)}
                 placeholder={''}
+                value={password}
+                enablesReturnKeyAutomatically
+                autoCapitalize="none"
+                secureTextEntry={passwordVisibility}
               />
+              <Pressable onPress={handlePasswordVisibility}>
+                <Text>
+                  {' '}
+                  <Icon name={rightIcon} size={19} color="#232323" />
+                </Text>
+              </Pressable>
             </View>
 
             {!!emailError && (
@@ -88,6 +113,7 @@ const RegisterScreen = () => {
                   padding: 5,
                   borderRadius: 6,
                   marginBottom: 5,
+                  fontFamily: 'NunitoSans-Regular',
                 }}>
                 {emailError}
               </Text>
@@ -98,24 +124,27 @@ const RegisterScreen = () => {
               onPress={() => {
                 handlerLogin();
               }}>
-              <Text style={styles.loginText1}>Next</Text>
+              <Text style={[styles.loginText1, styles.nunitoSans]}>Next</Text>
             </TouchableOpacity>
-            <Text style={styles.denganMe}>
+            <Text style={[styles.denganMe, styles.nunitoSans]}>
               Dengan mendaftar, saya menyetujui{' '}
             </Text>
-            <Text style={styles.denganMe1}>
+            <Text style={[styles.denganMe1, styles.nunitoSans]}>
               {' '}
-              <Text style={styles.denganMeb}>
+              <Text style={[styles.denganMeb, styles.nunitoSans]}>
                 Syarat dan Ketentuan
-              </Text> serta{' '}
-              <Text style={styles.denganMeb}>Kebijakan Privasi</Text>
+              </Text>{' '}
+              serta{' '}
+              <Text style={[styles.denganMeb, styles.nunitoSans]}>
+                Kebijakan Privasi
+              </Text>
             </Text>
           </View>
         </View>
         <View style={styles.or}>
           <View style={styles.orLine} />
           <View>
-            <Text style={styles.orText}>OR</Text>
+            <Text style={[styles.orText, styles.nunitoSans]}>OR</Text>
           </View>
           <View style={styles.orLine} />
         </View>
@@ -132,7 +161,7 @@ const RegisterScreen = () => {
                 source={ImagesAssets.google_logo}
                 style={styles.signLogo}
               />
-              <Text style={styles.signText}>Google</Text>
+              <Text style={[styles.signText, styles.nunitoSans]}>Google</Text>
             </View>
           </TouchableOpacity>
 
@@ -147,14 +176,19 @@ const RegisterScreen = () => {
                 source={ImagesAssets.facebook_logo}
                 style={styles.signLogo}
               />
-              <Text style={styles.signText}>Facebook</Text>
+              <Text style={[styles.signText, styles.nunitoSans]}>Facebook</Text>
             </View>
           </TouchableOpacity>
         </View>
         <View style={styles.containerRegisterAcc}>
-          <Text style={styles.registerText}>Have an account? </Text>
+          <Text style={[styles.registerText, styles.nunitoSans]}>
+            Have an account?{' '}
+          </Text>
           <TouchableOpacity onPress={() => nav.goBack()}>
-            <Text style={[styles.register, styles.registerText]}>Login</Text>
+            <Text
+              style={[styles.register, styles.registerText, styles.nunitoSans]}>
+              Login
+            </Text>
           </TouchableOpacity>
         </View>
       </View>

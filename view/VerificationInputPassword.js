@@ -13,18 +13,25 @@ const VerificationInputPassword = () => {
     <View style={styles.container}>
       <View style={styles.view1}>
         <View style={styles.loginPage}>
-          <Text style={styles.loginText}>Create new password</Text>
+          <Text style={[styles.loginText, styles.nunitoSans]}>
+            Create new password
+          </Text>
           <View style={styles.inputMain}>
-            <Text style={styles.labelInput}>Phone Number / Email</Text>
+            <Text style={[styles.labelInput, styles.nunitoSans]}>
+              Phone Number / Email
+            </Text>
             <View style={styles.inputContainer}>
-              <TextInput style={styles.textInput} placeholder={''} />
+              <TextInput
+                style={[styles.textInput, styles.nunitoSans]}
+                placeholder={''}
+              />
             </View>
 
             <TouchableOpacity
               style={[styles.loginScreenButton, styles.loginTextInput]}
               underlayColor="#fff"
               onPress={() => nav.navigate('Forget password')}>
-              <Text style={styles.loginText1}>Next</Text>
+              <Text style={[styles.loginText1, styles.nunitoSans]}>Next</Text>
             </TouchableOpacity>
           </View>
         </View>

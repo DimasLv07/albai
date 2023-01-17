@@ -114,11 +114,13 @@ const VerificationPassword = () => {
   return (
     <SafeAreaView style={styles.root}>
       <View style={styles.container}>
-        <Text style={styles.title}>Input your verification code</Text>
-        <Text style={styles.subtitle}>
+        <Text style={[styles.title, styles.nunitoSans]}>
+          Input your verification code
+        </Text>
+        <Text style={[styles.subtitle, styles.nunitoSans]}>
           We have sent the verification code to contohaja@gmail.com
         </Text>
-        <Text style={styles.veri}>Verification Code</Text>
+        <Text style={[styles.veri, styles.nunitoSans]}>Verification Code</Text>
         <CodeField
           ref={ref}
           {...props}
@@ -134,7 +136,7 @@ const VerificationPassword = () => {
               onLayout={getCellOnLayoutHandler(index)}
               key={index}
               style={[styles.cellRoot, isFocused && styles.focusCell]}>
-              <Text style={styles.cellText}>
+              <Text style={[styles.cellText, styles.nunitoSans]}>
                 {symbol || (isFocused ? <Cursor /> : null)}
               </Text>
             </View>
@@ -144,9 +146,9 @@ const VerificationPassword = () => {
           style={styles.loginScreenButton}
           underlayColor="#fff"
           onPress={() => nav.navigate('CreateNewPassword')}>
-          <Text style={styles.loginText1}>Next</Text>
+          <Text style={[styles.loginText1, styles.nunitoSans]}>Next</Text>
         </TouchableOpacity>
-        <Text style={styles.error}>
+        <Text style={[styles.error, styles.nunitoSans]}>
           Didnt recieve the code? <Text style={styles.brownText}>Resend</Text>
         </Text>
       </View>
