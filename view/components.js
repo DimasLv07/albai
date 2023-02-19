@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 
 import {Card, Paragraph} from 'react-native-paper';
 
@@ -6,6 +6,14 @@ import {ImagesAssets} from '../assets/ImagesAssets';
 import {useNavigation} from '@react-navigation/native';
 import Octicons from 'react-native-vector-icons/Octicons';
 import IconAwesome from 'react-native-vector-icons/FontAwesome';
+import {Dropdown} from 'react-native-element-dropdown';
+import AntDesign from 'react-native-vector-icons/AntDesign';
+import BouncyCheckbox from 'react-native-bouncy-checkbox';
+import IconMaterial from 'react-native-vector-icons/MaterialIcons';
+import IconOcticons from 'react-native-vector-icons/Octicons';
+import IconAntDesign from 'react-native-vector-icons/AntDesign';
+import Icon from 'react-native-vector-icons/Ionicons';
+import Text from './TextAlbai';
 
 import {
   Image,
@@ -13,12 +21,101 @@ import {
   TouchableOpacity,
   StyleSheet,
   ImageBackground,
-  Text,
+  TextInput,
+  Pressable,
 } from 'react-native';
 
 var styles = require('./style/styles');
 const getRandomNumber = () => {
   return Math.floor(Math.random() * 15 + 12);
+};
+
+export const HeaderWithSearchBar = props => {
+  const [email, setEmail] = useState('');
+  const [search, setSearch] = useState('');
+  const [emailError, setEmailError] = useState('');
+  const [back, setBack] = useState(props.back);
+
+  const nav = useNavigation();
+  const handlerSearch = val => {
+    setSearch(val);
+    setEmailError(null);
+  };
+  return (
+    <View style={styles.headerMain}>
+      <View style={styles.headerContainer}>
+        {back && (
+          <TouchableOpacity onPress={() => nav.goBack()}>
+            <Icon size={25} name={'arrow-back'} />
+          </TouchableOpacity>
+        )}
+        <View style={[styles.inputContainerHeader, props.style]}>
+          <TouchableOpacity>
+            <Text style={{marginLeft: 5}}>
+              {' '}
+              <Icon name={'search'} size={19} color="#232323" />
+            </Text>
+          </TouchableOpacity>
+          <TextInput
+            style={[styles.textInputHeader, styles.nunitoSans]}
+            onChangeText={value => handlerSearch(value)}
+            placeholder={'Search here...'}
+            value={search}
+            enablesReturnKeyAutomatically
+            autoCapitalize="none"
+          />
+        </View>
+
+        <TouchableOpacity
+          onPress={() => nav.navigate('KeranjangScreen')}
+          style={styles.iconHeader}>
+          <Text>
+            {' '}
+            <Icon name={'cart-outline'} size={32} color="white" />
+          </Text>
+        </TouchableOpacity>
+        <TouchableOpacity onPress={() => nav.navigate('Profile')}>
+          <Text style={styles.iconHeader}>
+            {' '}
+            <IconAwesome name={'user-o'} size={27} color="white" />
+          </Text>
+        </TouchableOpacity>
+      </View>
+
+      <TouchableOpacity
+        style={[styles.headerContainer, {marginBottom: -10, marginLeft: -11}]}>
+        <Text style={styles.iconHeaderBottom}>
+          {' '}
+          <Icon name={'location-outline'} size={15} color="#232323" />
+        </Text>
+        <Text style={{fontSize: 11}}>Tambah alamat</Text>
+        <Text style={[styles.iconHeaderBottom, {marginTop: 5}]}>
+          {' '}
+          <IconMaterial
+            name={'keyboard-arrow-down'}
+            size={15}
+            color="#232323"
+          />
+        </Text>
+      </TouchableOpacity>
+      {props.home ? (
+        <View></View>
+      ) : (
+        <TouchableOpacity
+          onPress={() => nav.navigate('Home')}
+          style={{
+            marginRight: 18,
+            flexDirection: 'row',
+            position: 'absolute',
+            bottom: 10,
+            right: 0,
+          }}>
+          <IconAwesome color="black" size={20} name={'home'} />
+          <Text style={{marginLeft: 5}}>Go to home</Text>
+        </TouchableOpacity>
+      )}
+    </View>
+  );
 };
 
 export const CardCategoryDetail = props => {
@@ -27,16 +124,14 @@ export const CardCategoryDetail = props => {
     <TouchableOpacity
       onPress={() => nav.navigate('CategoryDetail')}
       style={stylePribadi.cardCategories}>
-      <ImageBackground
-        style={stylePribadi.cardCategories}
-        source={ImagesAssets.categoriesCardImage}>
+      <ImageBackground style={stylePribadi.cardCategories} source={props.image}>
         <View style={stylePribadi.textImageCardCategories}>
           <Text
             style={[
               stylePribadi.textImageCardCategoriesColor,
               styles.nunitoSans,
             ]}>
-            Foods
+            {props.name}
           </Text>
         </View>
       </ImageBackground>
@@ -110,16 +205,10 @@ export const CardCategories = props => {
   return (
     <Card style={styles.cardCategories}>
       <TouchableOpacity onPress={() => nav.navigate('CategoryDetail')}>
-        <Card.Cover
-          style={styles.cardCategoriesImage}
-          source={{
-            uri:
-              'https://source.unsplash.com/random/200x200?sig=' +
-              getRandomNumber(),
-          }}
-        />
-        <Paragraph style={[styles.categoriesTitle, styles.nunitoSans]}>
-          Food
+        <Card.Cover style={styles.cardCategoriesImage} source={props.image} />
+        <Paragraph
+          style={[styles.categoriesTitle, styles.nunitoSans, props.style]}>
+          {props.name}
         </Paragraph>
       </TouchableOpacity>
     </Card>
@@ -241,11 +330,7 @@ export const CardTab = props => {
       <TouchableOpacity onPress={() => nav.navigate('ItemDetail')}>
         <Card.Cover
           style={styles.cardAlbaiImageTab}
-          source={{
-            uri:
-              'https://source.unsplash.com/random/200x200?sig=' +
-              getRandomNumber(),
-          }}
+          source={ImagesAssets.exampleProductBig}
         />
         <View style={styles.albaiPromoContent}>
           <Paragraph
@@ -296,11 +381,7 @@ export const CardPromo = props => {
       <TouchableOpacity onPress={() => nav.navigate('ItemDetail')}>
         <Card.Cover
           style={styles.cardAlbaiImage}
-          source={{
-            uri:
-              'https://source.unsplash.com/random/200x200?sig=' +
-              getRandomNumber(),
-          }}
+          source={ImagesAssets.exampleProduct}
         />
         <View style={styles.albaiPromoContent}>
           <Paragraph
@@ -344,6 +425,171 @@ export const CardPromo = props => {
         </View>
       </TouchableOpacity>
     </Card>
+  );
+};
+
+export const KeranjangComponent = props => {
+  const [value, setValue] = useState(null);
+  const [checkboxState, setCheckboxState] = useState(props.check);
+
+  const renderItem = (item: any) => {
+    return (
+      <View style={styles.item}>
+        <Text numberOfLines={1} style={styles.textItem}>
+          {item.label}
+        </Text>
+      </View>
+    );
+  };
+
+  const [count, setCount] = useState(1);
+
+  const countHandlerPlus = () => {
+    if (count >= 0) {
+      setCount(prevCount => prevCount + 1);
+    }
+  };
+
+  const countHandlerMinus = () => {
+    if (count >= 1) {
+      setCount(prevCount => prevCount - 1);
+    }
+  };
+  return (
+    <View>
+      <View style={{marginBottom: 20}}>
+        <View style={{flexDirection: 'row', marginBottom: 10}}>
+          <View>
+            <View style={{flexDirection: 'row'}}>
+              <BouncyCheckbox
+                ref={(ref: any) => (props.ref = ref)}
+                size={20}
+                fillColor="#000000"
+                unfillColor="#FFFFFF"
+                innerIconStyle={{borderWidth: 1}}
+                isChecked={checkboxState}
+                disableBuiltInState
+                onPress={() => setCheckboxState(!checkboxState)}
+                // style={styles.checkbox}
+              />
+              <Image
+                source={ImagesAssets.profileUser}
+                style={{width: 50, height: 50}}
+              />
+            </View>
+          </View>
+          <View style={{marginLeft: 10, width: ' 67%'}}>
+            <Text style={{fontSize: 11.5, fontWeight: 'bold'}}>
+              Cosmos 17-WFG Kipas angin dingin A...
+            </Text>
+            <View
+              style={{
+                flexDirection: 'row',
+                justifyContent: 'space-between',
+              }}>
+              <View>
+                <View style={{flexDirection: 'row'}}>
+                  <Text style={{fontSize: 11.5, fontWeight: 'bold'}}>
+                    Rp 299.000
+                  </Text>
+                  <Text
+                    style={{
+                      backgroundColor: 'rgba(255, 0, 0, 0.2)',
+                      fontSize: 9,
+                      padding: 3.5,
+                      marginLeft: 5,
+                      alignSelf: 'flex-start',
+                      borderRadius: 2,
+                      color: '#ff0000',
+                    }}>
+                    40%
+                  </Text>
+                </View>
+                <Text
+                  style={{
+                    fontSize: 10,
+                    fontWeight: '600',
+                    textDecorationLine: 'line-through',
+                    color: '#525252',
+                  }}>
+                  Rp 299.000
+                </Text>
+              </View>
+              <Dropdown
+                style={styles.dropdown}
+                placeholderStyle={styles.placeholderStyle}
+                selectedTextStyle={styles.selectedTextStyle}
+                inputSearchStyle={styles.inputSearchStyle}
+                iconStyle={styles.iconStyle}
+                data={data}
+                maxHeight={300}
+                labelField="label"
+                valueField="value"
+                placeholder="Select item"
+                searchPlaceholder="Search..."
+                value={value}
+                onChange={item => {
+                  setValue(item.value);
+                }}
+                renderItem={renderItem}
+              />
+            </View>
+          </View>
+        </View>
+        <View
+          style={{
+            flexDirection: 'row',
+            justifyContent: 'space-between',
+            paddingLeft: 35,
+          }}>
+          <View style={{flexDirection: 'row', alignItems: 'center'}}>
+            <View
+              style={{
+                flexDirection: 'row',
+                alignItems: 'center',
+                padding: 2,
+                paddingRight: 7,
+                paddingLeft: 7,
+                borderWidth: 1,
+                borderColor: 'black',
+                justifyContent: 'space-between',
+                marginRight: 10,
+                borderRadius: 5,
+              }}>
+              <TouchableOpacity
+                onPress={countHandlerMinus}
+                style={{paddingRight: 7}}>
+                <IconAntDesign name={'minus'} />
+              </TouchableOpacity>
+              <Text>{count}</Text>
+              <TouchableOpacity
+                onPress={countHandlerPlus}
+                style={{paddingLeft: 7}}>
+                <IconOcticons name={'plus'} />
+              </TouchableOpacity>
+            </View>
+            <TouchableOpacity
+              style={{
+                borderWidth: 1,
+                borderColor: '#EF4444',
+                padding: 3,
+                borderRadius: 3,
+              }}>
+              <IconAwesome size={15} color={'#EF4444'} name={'trash-o'} />
+            </TouchableOpacity>
+          </View>
+          <Text
+            style={{
+              fontSize: 12.5,
+              fontWeight: 'bold',
+              color: '#EF4444',
+              marginRight: 20,
+            }}>
+            5 Items Left
+          </Text>
+        </View>
+      </View>
+    </View>
   );
 };
 
@@ -404,3 +650,14 @@ const stylePribadi = StyleSheet.create({
     flexDirection: 'row',
   },
 });
+
+const data = [
+  {label: 'Item 1', value: '1'},
+  {label: 'Item 2', value: '2'},
+  {label: 'Item 3', value: '3'},
+  {label: 'Item 4', value: '4'},
+  {label: 'Item 5', value: '5'},
+  {label: 'Item 6', value: '6'},
+  {label: 'Item 7', value: '7'},
+  {label: 'Item 8', value: '8'},
+];

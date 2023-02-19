@@ -4,7 +4,6 @@ import {getHeaderTitle} from '@react-navigation/elements';
 import {useNavigation} from '@react-navigation/native';
 
 import {
-  Text,
   View,
   TouchableOpacity,
   ScrollView,
@@ -16,6 +15,8 @@ import IconAwesome5 from 'react-native-vector-icons/FontAwesome5';
 import IconFeather from 'react-native-vector-icons/Feather';
 import IconMaterialCommunity from 'react-native-vector-icons/MaterialCommunityIcons';
 import Entypo from 'react-native-vector-icons/Entypo';
+import Text from './TextAlbai';
+import Icon from 'react-native-vector-icons/Ionicons';
 
 import LoginScreen from './Login';
 import RegisterScreen from './Register';
@@ -60,25 +61,42 @@ const AppNavigator = () => {
         cardStyle: {backgroundColor: '#fff'},
       }}>
       <Stack.Screen name="Login" component={LoginScreen} />
+      <Stack.Screen
+        options={{headerShown: false}}
+        name="ItemDetail"
+        component={ItemDetail}
+      />
 
+      <Stack.Screen
+        option={{title: 'Register'}}
+        name="Register"
+        component={RegisterScreen}
+      />
       <Stack.Screen
         name="CreateProduct"
         options={{
+          title: 'Create Product',
           headerStyle: {
             backgroundColor: 'white',
           },
-          headerRight: () => (
-            <TouchableOpacity style={{marginRight: 18}}>
-              <Text style={{color: '#AC8B75'}}>Save</Text>
-            </TouchableOpacity>
-          ),
         }}
         component={CreateProduct}
       />
-      <Stack.Screen name="KeranjangScreen" component={KeranjangScreen} />
+      <Stack.Screen
+        options={{headerShown: false}}
+        name="Home"
+        component={HomeScreen}
+      />
+
+      <Stack.Screen
+        option={{title: 'Keranjang'}}
+        name="KeranjangScreen"
+        component={KeranjangScreen}
+      />
       <Stack.Screen
         name="ProductList"
         options={{
+          title: 'Product List',
           headerStyle: {
             backgroundColor: 'white',
           },
@@ -95,11 +113,25 @@ const AppNavigator = () => {
       <Stack.Screen
         name="StoreProfileScreen"
         options={{
+          title: 'My Store',
           headerStyle: {
             backgroundColor: '#E3CAA5',
           },
+          headerLeft: () => (
+            <TouchableOpacity
+              style={{marginLeft: 20, alignSelf: 'center'}}
+              onPress={() => nav.navigate('Profile')}>
+              <Icon color="black" size={25} name={'arrow-back'} />
+            </TouchableOpacity>
+          ),
           headerRight: () => (
             <View style={{flexDirection: 'row'}}>
+              <TouchableOpacity
+                onPress={() => nav.navigate('Home')}
+                style={{marginRight: 18, flexDirection: 'row'}}>
+                <IconAwesome color="black" size={20} name={'home'} />
+                <Text style={{marginLeft: 5}}>Go to home</Text>
+              </TouchableOpacity>
               <TouchableOpacity style={{marginRight: 18}}>
                 <IconAwesome color="black" size={18} name={'envelope'} />
               </TouchableOpacity>
@@ -118,6 +150,7 @@ const AppNavigator = () => {
       <Stack.Screen
         name="WishlistScreen"
         options={{
+          title: 'Wishlist',
           headerRight: () => (
             <TouchableOpacity style={{marginRight: 23}}>
               <IconFeather size={18} name={'shopping-cart'} />
@@ -129,6 +162,7 @@ const AppNavigator = () => {
 
       <Stack.Screen
         options={{
+          title: 'Profile',
           headerStyle: {
             backgroundColor: '#E3CAA5',
           },
@@ -137,21 +171,23 @@ const AppNavigator = () => {
         component={ProfileView}
       />
 
-      <Stack.Screen name="Register" component={RegisterScreen} />
       <Stack.Screen
         name="Email Verification"
         component={VerificationRegister}
       />
-      <Stack.Screen name="Forget password" component={VerificationPassword} />
+      <Stack.Screen
+        option={{title: 'Forget Password'}}
+        name="Forget password"
+        component={VerificationPassword}
+      />
       <Stack.Screen
         name="VerificationInputPassword"
         component={VerificationInputPassword}
       />
-      <Stack.Screen name="CreateNewPassword" component={CreateNewPassword} />
       <Stack.Screen
-        options={{headerShown: false}}
-        name="Home"
-        component={HomeScreen}
+        option={{title: 'Create New Password'}}
+        name="CreateNewPassword"
+        component={CreateNewPassword}
       />
 
       <Stack.Screen
@@ -165,11 +201,7 @@ const AppNavigator = () => {
         name="CategoryDetail"
         component={CategoryDetail}
       />
-      <Stack.Screen
-        options={{headerShown: false}}
-        name="ItemDetail"
-        component={ItemDetail}
-      />
+
       <Stack.Screen
         options={{headerShown: false}}
         name="StoreDetail"
@@ -177,6 +209,7 @@ const AppNavigator = () => {
       />
       <Stack.Screen
         options={{
+          title: 'Chat',
           headerRight: () => (
             <TouchableOpacity style={{marginRight: 23}}>
               <IconAwesome size={18} name={'search'} />
@@ -198,13 +231,26 @@ const AppNavigator = () => {
         name="ChatDetail"
         component={ChatDetail}
       />
-      <Stack.Screen name="CreateStorePhone" component={CreateStorePhone} />
-      <Stack.Screen name="Create Store Domain" component={CreateStoreDomain} />
+      <Stack.Screen
+        options={{title: ''}}
+        name="CreateStorePhone"
+        component={CreateStorePhone}
+      />
+      <Stack.Screen
+        name="Create Store Domain"
+        component={CreateStoreDomain}
+        options={{title: ''}}
+      />
       <Stack.Screen
         name="Create Store Location"
         component={CreateStoreLocation}
+        options={{title: ''}}
       />
-      <Stack.Screen name="Create Store Finish" component={CreateStoreFinish} />
+      <Stack.Screen
+        name="Create Store Finish"
+        component={CreateStoreFinish}
+        options={{title: ''}}
+      />
     </Stack.Navigator>
   );
 };

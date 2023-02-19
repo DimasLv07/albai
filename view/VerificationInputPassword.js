@@ -1,6 +1,7 @@
 import React from 'react';
-import {Text, Image, View, TextInput, TouchableOpacity} from 'react-native';
+import {Image, View, TextInput, TouchableOpacity} from 'react-native';
 import HideWithKeyboard from 'react-native-hide-with-keyboard';
+import Text from './TextAlbai';
 
 import {ImagesAssets} from '../assets/ImagesAssets';
 

@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
+import Text from './TextAlbai';
+
 import {
-  Text,
   View,
   TouchableOpacity,
   ScrollView,
@@ -8,7 +9,10 @@ import {
   TextInput,
   Pressable,
   StyleSheet,
+  Image,
 } from 'react-native';
+import {ImagesAssets} from '../assets/ImagesAssets';
+
 import {Searchbar} from 'react-native-paper';
 
 import {TabView, SceneMap, TabBar} from 'react-native-tab-view';
@@ -34,36 +38,40 @@ const StoreProfileScreen = () => {
           styles.row,
           {paddingTop: 10, paddingBottom: 20, backgroundColor: '#E3CAA5'},
         ]}>
-        <View
+        <Image
+          source={{
+            uri: 'https://www.c-store.com.au/wp-content/uploads/2018/02/Woolworths_MarrickvilleMetro_Store-Front.jpg?w=1200',
+          }}
           style={{
-            width: 60,
-            height: 60,
+            width: 80,
+            height: 80,
             backgroundColor: 'black',
-            borderRadius: 30,
+            borderRadius: 50,
             marginRight: 10,
             marginLeft: 15,
           }}
         />
+
         <View>
           <Text style={{fontSize: 17, fontWeight: 'bold', color: '#282828'}}>
             Berkah Store
           </Text>
           <View style={[styles.row, {alignItems: 'center'}]}>
-            <Feather size={16} name={'user'} />
-            <Text style={{marginLeft: 4}}>98 Followers</Text>
+            <Feather size={15} name={'user'} />
+            <Text style={{marginLeft: 4, fontSize: 11}}>98 Followers</Text>
           </View>
           <View
             style={{
               flexDirection: 'row',
               padding: 5,
-              width: 250,
+              width: "67%",
               backgroundColor: 'white',
               justifyContent: 'space-between',
               borderRadius: 5,
               marginTop: 15,
             }}>
-            <Text>$ Balance</Text>
-            <Text>Rp 120.000.000</Text>
+            <Text style={{fontSize:11}}>$ Balance</Text>
+            <Text style={{fontSize:11}}>Rp 120.000.000</Text>
           </View>
         </View>
       </View>
@@ -86,7 +94,7 @@ const StoreProfileScreen = () => {
               paddingBottom: 10,
             },
           ]}>
-          <IconAwesome size={17} name={'heart-o'} />
+          <IconAwesome size={20} name={'heart-o'} />
           <TouchableOpacity
             onPress={() => nav.navigate('WishlistScreen')}
             style={{marginLeft: 10}}>
@@ -104,7 +112,7 @@ const StoreProfileScreen = () => {
               paddingBottom: 10,
             },
           ]}>
-          <IconMaterialCommunity size={17} name={'store-check-outline'} />
+          <IconMaterialCommunity size={20} name={'store-check-outline'} />
           <Text style={{marginLeft: 10}}>Ready to deliver</Text>
         </View>
         <View
@@ -117,7 +125,7 @@ const StoreProfileScreen = () => {
               paddingBottom: 10,
             },
           ]}>
-          <Icon size={17} name={'ios-star-outline'} />
+          <Icon size={20} name={'ios-star-outline'} />
           <Text style={{marginLeft: 10}}>Reviews</Text>
         </View>
       </View>
@@ -128,22 +136,20 @@ const StoreProfileScreen = () => {
           {
             padding: 20,
             marginTop: 20,
-            backgroundColor: '#AC8B75',
-            opacity: 0.4,
+            backgroundColor: 'rgba(172,139,117,0.4)',
+
             flexDirection: 'row',
             justifyContent: 'space-between',
             alignItems: 'flex-start',
           },
         ]}>
         <View>
-          <Text style={{color: '#282828', fontWeight: 'bold', opacity: 1}}>
+          <Text style={{color: '#282828', fontWeight: 'bold'}}>
             Your Product
           </Text>
-          <Text style={{color: '#282828', fontSize: 11, opacity: 1}}>
-            5 Product
-          </Text>
+          <Text style={{color: '#282828', fontSize: 11}}>5 Product</Text>
         </View>
-        <Text style={{color: '#AC8B75', opacity: 1}}>+ Add Product</Text>
+        <Text style={{color: '#AC8B75'}}>+ Add Product</Text>
       </TouchableOpacity>
     </View>
   );

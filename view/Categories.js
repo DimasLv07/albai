@@ -1,9 +1,9 @@
 import React, {useState} from 'react';
 
 import {ImagesAssets} from '../assets/ImagesAssets';
+import Text from './TextAlbai';
 
 import {
-  Text,
   View,
   TouchableOpacity,
   StyleSheet,
@@ -27,29 +27,32 @@ const CategoriesScreen = () => {
         <View style={stylePribadi.viewCategories}>
           <Text style={stylePribadi.allCategories}>All Categories</Text>
           <View style={stylePribadi.cardCategoriesContainer}>
-            <CardCategoryDetail />
+            <CardCategoryDetail name="Foods" image={ImagesAssets.food} />
             <View style={stylePribadi.pemisahCardCategories} />
-            <CardCategoryDetail />
+            <CardCategoryDetail
+              name="Cosmetic & Beauty"
+              image={ImagesAssets.beauty}
+            />
           </View>
           <View style={stylePribadi.cardCategoriesContainer}>
-            <CardCategoryDetail />
+            <CardCategoryDetail name="Computer & Accesories" image={ImagesAssets.computer} />
             <View style={stylePribadi.pemisahCardCategories} />
-            <CardCategoryDetail />
+            <CardCategoryDetail name="Phone & Accesories" image={ImagesAssets.phone} />
           </View>
           <View style={stylePribadi.cardCategoriesContainer}>
-            <CardCategoryDetail />
+            <CardCategoryDetail name="Man Fashion" image={ImagesAssets.man} />
             <View style={stylePribadi.pemisahCardCategories} />
-            <CardCategoryDetail />
+            <CardCategoryDetail name="Woman Fashion" image={ImagesAssets.woman} />
           </View>
           <View style={stylePribadi.cardCategoriesContainer}>
-            <CardCategoryDetail />
+            <CardCategoryDetail name="Home Appliance" image={ImagesAssets.home} />
             <View style={stylePribadi.pemisahCardCategories} />
-            <CardCategoryDetail />
+            <CardCategoryDetail name="Otomotive" image={ImagesAssets.otomative} />
           </View>
           <View style={stylePribadi.cardCategoriesContainer}>
-            <CardCategoryDetail />
+            <CardCategoryDetail name="Sports" image={ImagesAssets.sport} />
             <View style={stylePribadi.pemisahCardCategories} />
-            <CardCategoryDetail />
+            <CardCategoryDetail name="Gaming" image={ImagesAssets.gaming} />
           </View>
         </View>
       </View>

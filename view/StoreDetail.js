@@ -1,10 +1,11 @@
 import React, {useState} from 'react';
+import Text from './TextAlbai';
+
 import {
   View,
   StyleSheet,
   ListRenderItem,
   Pressable,
-  Text,
   TextInput,
   TouchableOpacity,
   Image,
@@ -16,9 +17,16 @@ import Icon from 'react-native-vector-icons/Ionicons';
 import IconAwesome from 'react-native-vector-icons/FontAwesome';
 import IconMaterial from 'react-native-vector-icons/MaterialIcons';
 import IconMaterialCommunity from 'react-native-vector-icons/MaterialCommunityIcons';
-import {CardCategories, CardPromo, CardTab} from './components';
+import {
+  CardCategories,
+  CardPromo,
+  CardTab,
+  HeaderWithSearchBar,
+} from './components';
 import {ScrollView as GestureHandlerScrollView} from 'react-native-gesture-handler';
 import CarouselC from './Carousel';
+import AntDesign from 'react-native-vector-icons/AntDesign';
+
 
 var styles = require('./style/styles');
 import {ImagesAssets} from '../assets/ImagesAssets';
@@ -103,12 +111,14 @@ const Header = () => {
               average{'\n'}review
             </Text>
           </View>
+          <View style={{borderColor: '#D7D7D7', borderLeftWidth: 1}} />
           <View>
             <Text style={[styles.nunitoSans]}>± 1 Hour</Text>
             <Text style={[styles.textAlignCenter, styles.nunitoSans]}>
               order{'\n'}processed
             </Text>
           </View>
+          <View style={{borderColor: '#D7D7D7', borderLeftWidth: 1}} />
           <View>
             <Text style={[styles.nunitoSans]}>100%</Text>
             <Text style={[styles.textAlignCenter, styles.nunitoSans]}>
@@ -151,58 +161,10 @@ const StoreDetail: React.FC = () => {
 
   return (
     <View style={{flex: 1}}>
-      <View style={[styles.headerMain, {zIndex: 10}]}>
-        <View style={styles.headerContainer}>
-          <Pressable onPress={() => nav.goBack()}>
-            <Icon size={25} name={'arrow-back'} />
-          </Pressable>
-          <View style={styles.inputContainerHeader}>
-            <Pressable>
-              <Text style={{marginLeft: 5}}>
-                {' '}
-                <Icon name={'search'} size={19} color="#232323" />
-              </Text>
-            </Pressable>
-            <TextInput
-              style={[styles.textInputHeader, styles.nunitoSans]}
-              onChangeText={value => handlerSearch(value)}
-              placeholder={'Search here...'}
-              value={search}
-              enablesReturnKeyAutomatically
-              autoCapitalize="none"
-            />
-          </View>
-
-          <Pressable style={styles.iconHeader}>
-            <Text>
-              {' '}
-              <Icon name={'cart-outline'} size={23} color="white" />
-            </Text>
-          </Pressable>
-          <Pressable>
-            <Text style={styles.iconHeader}>
-              {' '}
-              <IconAwesome name={'user-o'} size={20} color="white" />
-            </Text>
-          </Pressable>
-        </View>
-
-        <TouchableOpacity style={[styles.headerContainer, {marginBottom: -10}]}>
-          <Text style={styles.iconHeaderBottom}>
-            {' '}
-            <Icon name={'location-outline'} size={20} color="#232323" />
-          </Text>
-          <Text>Tambah alamat</Text>
-          <Text style={[styles.iconHeaderBottom, {marginTop: 5}]}>
-            {' '}
-            <IconMaterial
-              name={'keyboard-arrow-down'}
-              size={20}
-              color="#232323"
-            />
-          </Text>
-        </TouchableOpacity>
+      <View style={{zIndex: 10}}>
+        <HeaderWithSearchBar back={true} />
       </View>
+
       <Tabs.Container
         renderTabBar={props => (
           <MaterialTabBar
@@ -221,7 +183,7 @@ const StoreDetail: React.FC = () => {
                   Al-bai’ Promo
                 </Text>
                 <TouchableOpacity onPress={() => nav.navigate('Promo')}>
-                  <Text style={[styles.nunitoSans]}>See More</Text>
+                  <Text style={[styles.nunitoSans]}></Text>
                 </TouchableOpacity>
               </View>
               <GestureHandlerScrollView
@@ -237,14 +199,18 @@ const StoreDetail: React.FC = () => {
                 </View>
               </GestureHandlerScrollView>
             </View>
+
             <CarouselC />
+
             <View style={styles.containerPromo}>
               <View style={styles.cpluss}>
                 <Text style={[styles.textCategories, styles.nunitoSans]}>
                   Top Seller
                 </Text>
                 <TouchableOpacity onPress={() => nav.navigate('Promo')}>
-                  <Text style={[styles.nunitoSans]}>See More</Text>
+                  <Text style={[styles.nunitoSans, {color: '#AC8B75'}]}>
+                    See more <AntDesign name={'right'} />
+                  </Text>
                 </TouchableOpacity>
               </View>
               <GestureHandlerScrollView

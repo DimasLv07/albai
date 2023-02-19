@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
+import Text from './TextAlbai';
+
 import {
-  Text,
   View,
   TouchableOpacity,
   ScrollView,
@@ -46,10 +47,11 @@ const CreateStoreLocation = () => {
                 placeholder={''}
               />
             </View>
-            <Text>
-              <IconMaterialCommunity size={15} name={'target'} /> Use your
-              current location
-            </Text>
+            <View style={{flexDirection: 'row', alignItems: 'center'}}>
+              <IconMaterialCommunity size={15} name={'target'} />
+              <Text style={{fontSize: 11, marginLeft: 10}}>Use your current location</Text>
+            </View>
+
             <TouchableOpacity
               style={[styles.loginScreenButton, styles.loginTextInput]}
               underlayColor="#fff"

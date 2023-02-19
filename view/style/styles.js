@@ -114,10 +114,11 @@ const styles = React.StyleSheet.create({
   },
 
   labelInput: {
-    fontSize: 10,
+    fontSize: 11,
     color: '#525252',
     paddingTop: 10,
     marginBottom: 3,
+    fontWeight: 'bold'
   },
 
   buttonLogin: {
@@ -275,7 +276,7 @@ const styles = React.StyleSheet.create({
 
   tabs: {
     flex: 1,
-    height: 750,
+    height: 800,
     backgroundColor: 'white',
   },
 
@@ -286,12 +287,11 @@ const styles = React.StyleSheet.create({
   },
 
   empatPuluh: {
-    backgroundColor: '#FF0000',
-    opacity: 0.2,
+    backgroundColor: 'rgba(255,0,0,0.3)',
     fontSize: 9,
-    paddingLeft: 3,
-    paddingRight: 3,
+    paddingHorizontal: 3.5,
     marginLeft: 5,
+    color: 'rgba(255,0,0,0.7)',
     alignSelf: 'flex-start',
     borderRadius: 2,
   },
@@ -337,6 +337,7 @@ const styles = React.StyleSheet.create({
   categoriesTitle: {
     textAlign: 'center',
     paddingTop: 10,
+    fontSize: 12,
   },
 
   albaiCardHargaPromo: {
@@ -424,8 +425,8 @@ const styles = React.StyleSheet.create({
   },
 
   filterTextButton: {
-    fontSize: 10,
-    color: 'black',
+    fontSize: 13,
+    color: '#AC8B75',
   },
 
   filterButtonHightLight: {
@@ -453,7 +454,7 @@ const styles = React.StyleSheet.create({
     backgroundColor: 'white',
     flexDirection: 'row',
     alignItems: 'center',
-    width: '70%',
+    width: '65%',
     marginLeft: 10,
   },
   textInputHeader: {
@@ -468,12 +469,12 @@ const styles = React.StyleSheet.create({
   },
 
   iconHeader: {
-    marginLeft: 5,
+    marginLeft: 10,
   },
 
   filterButton: {
     backgroundColor: '#fff',
-    borderColor: 'black',
+    borderColor: '#E3CAA5',
     borderWidth: 1,
     padding: 8,
     paddingLeft: 20,
@@ -673,6 +674,43 @@ const styles = React.StyleSheet.create({
   checkBrown: {
     width: 13,
     height: 16,
+  },
+  dropdown: {
+    marginTop: 10,
+    height: 20,
+    backgroundColor: 'white',
+    borderRadius: 5,
+    padding: 12,
+    borderColor: 'black',
+    borderWidth: 1,
+    width: 110,
+  },
+  icon: {
+    marginRight: 5,
+  },
+  item: {
+    padding: 17,
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+  },
+  textItem: {
+    fontSize: 11,
+  },
+  placeholderStyle: {
+    fontSize: 11,
+  },
+  selectedTextStyle: {
+    fontSize: 11,
+    height: 15,
+  },
+  iconStyle: {
+    width: 20,
+    height: 20,
+  },
+  inputSearchStyle: {
+    height: 40,
+    fontSize: 11,
   },
 });
 

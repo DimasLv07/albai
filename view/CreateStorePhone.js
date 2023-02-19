@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
+import Text from './TextAlbai';
+
 import {
-  Text,
   View,
   TouchableOpacity,
   ScrollView,
@@ -34,7 +35,7 @@ const CreateStorePhone = () => {
           <Text style={[styles.loginText, styles.nunitoSans]}>
             Create new store
           </Text>
-          <Text>
+          <Text style={{ fontSize: 11 }}>
             Make your own store and start your bussiness, 100% free to make!
           </Text>
           <View style={styles.inputMain}>
@@ -47,7 +48,7 @@ const CreateStorePhone = () => {
                 placeholder={''}
               />
             </View>
-            <Text>Make sure your phone number is active</Text>
+            <Text style={{ fontSize: 11 }}>Make sure your phone number is active</Text>
             <TouchableOpacity
               style={[styles.loginScreenButton, styles.loginTextInput]}
               underlayColor="#fff"

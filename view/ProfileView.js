@@ -1,10 +1,11 @@
 import React, {useState} from 'react';
+import Text from './TextAlbai';
+
 import {
   View,
   StyleSheet,
   ListRenderItem,
   Pressable,
-  Text,
   TextInput,
   TouchableOpacity,
   Image,
@@ -34,28 +35,31 @@ const ProfileView = () => {
     <View style={styles.container}>
       <View
         style={{
+          marginTop: -10,
           padding: 20,
           flexDirection: 'row',
           backgroundColor: '#E3CAA5',
           justifyContent: 'space-between',
         }}>
         <View style={{flexDirection: 'row'}}>
-          <View
+          <Image
             style={{
               marginRight: 10,
-              height: 50,
-              width: 50,
+              height: 70,
+              width: 70,
               borderRadius: 60,
               backgroundColor: 'white',
             }}
+            source={ImagesAssets.userProfile}
           />
+
           <View>
-            <Text>User1910</Text>
-            <Text>awoakwk@gmail.com</Text>
-            <Text>085714811327</Text>
+            <Text style={{fontSize: 18, fontWeight: 'bold', color: '#282828'}}>User1910</Text>
+            <Text style={{fontSize: 13,color: '#282828'}}>awoakwk@gmail.com</Text>
+            <Text style={{fontSize: 13,color: '#282828'}}>085714811327</Text>
           </View>
         </View>
-        <IconOcti name={'pencil'} />
+        <IconOcti size={18} name={'pencil'} />
       </View>
       <TouchableOpacity
         style={[
@@ -63,8 +67,7 @@ const ProfileView = () => {
           {
             padding: 20,
             marginTop: 20,
-            backgroundColor: '#AC8B75',
-            opacity: 0.4,
+            backgroundColor: 'rgba(172, 139, 117, 0.4)',
             alignItems: 'center',
           },
         ]}
@@ -76,7 +79,7 @@ const ProfileView = () => {
           ]}
           source={ImagesAssets.rumah}
         />
-        <Text style={{color: '#985325', fontWeight: 'bold'}}>
+        <Text style={{color: '#AC8B75', fontWeight: '600'}}>
           Create your store (FREE!)
         </Text>
       </TouchableOpacity>

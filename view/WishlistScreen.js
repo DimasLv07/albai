@@ -1,7 +1,8 @@
 import React, {useState} from 'react';
-import {Text, View, TextInput, Pressable, ScrollView} from 'react-native';
+import {View, TextInput, Pressable, ScrollView} from 'react-native';
 import IconMaterialCommunity from 'react-native-vector-icons/MaterialCommunityIcons';
 import Icon from 'react-native-vector-icons/Ionicons';
+import Text from './TextAlbai';
 
 import {CardCategories, CardPromo, CardTabButton} from './components';
 

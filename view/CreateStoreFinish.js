@@ -1,6 +1,7 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
+import Text from './TextAlbai';
+
 import {
-  Text,
   View,
   TouchableOpacity,
   ScrollView,
@@ -27,6 +28,11 @@ import CarouselC from './Carousel';
 
 const CreateStoreFinish = () => {
   const nav = useNavigation();
+  useEffect(() => {
+    setTimeout(() => {
+      nav.navigate('StoreProfileScreen');
+    }, 2000);
+  }, []);
   return (
     <View style={styles.container}>
       <View style={[styles.view1, {alignItems: 'center', marginTop: 40}]}>

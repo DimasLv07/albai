@@ -1,6 +1,8 @@
 import React, {useState} from 'react';
+import Text from './TextAlbai';
+
 import {
-  Text,
+  FlatList,
   View,
   TouchableOpacity,
   ScrollView,
@@ -8,16 +10,86 @@ import {
   TextInput,
 } from 'react-native';
 
-import {CardPromo, CardTab} from './components';
+import {CardPromo, CardTab, HeaderWithSearchBar} from './components';
 import {useNavigation, useIsFocused} from '@react-navigation/native';
 import Icon from 'react-native-vector-icons/Ionicons';
 import IconAwesome from 'react-native-vector-icons/FontAwesome';
 import IconMaterial from 'react-native-vector-icons/MaterialIcons';
+import AntDesign from 'react-native-vector-icons/AntDesign';
 
 var styles = require('./style/styles');
 import CarouselC from './Carousel';
 
+const DATAFILTER = [
+  {
+    id: 'bd7ac123123dbea-c1b1-4fsdf6c2-aed5-3ad53abb28ba',
+    title: 'Foods',
+  },
+  {
+    id: '3ac68afc-c623gerg05-48d3-a4123f8-fbd91aa97f63',
+    title: 'Fashion',
+  },
+  {
+    id: 'asd-3sdfsd4da1-4743531f-bd96-1455adaas71e29d72',
+    title: 'Sport',
+  },
+  {
+    id: '58694a0f-3da1e-471f-bd9234234fsd6-145571e29d72',
+    title: 'Otomotive',
+  },
+  
+];
+
+const FilterPromo = ({
+  item,
+  onPress,
+  borderColor,
+  backgroundColor,
+  textColor,
+}) => (
+  <TouchableOpacity
+    onPress={onPress}
+    style={[
+      styles.filterButtonHightLightItemDetail,
+      {
+        backgroundColor: backgroundColor,
+        borderColor: borderColor,
+        marginRight: 10,
+      },
+    ]}>
+    <Text
+      style={[
+        styles.filterTextButtonHightLight,
+        styles.nunitoSans,
+        {
+          color: 'black',
+        },
+      ]}>
+      {item.title}
+    </Text>
+  </TouchableOpacity>
+);
+
 const CategoryDetail = () => {
+  const [selectedIdFilter, setSelectedIdFilter] = useState(
+    'bd7ac123123dbea-c1b1-4fsdf6c2-aed5-3ad53abb28ba',
+  );
+
+  const renderItemFilter = ({item}) => {
+    const backgroundColor =
+      item.id === selectedIdFilter ? 'rgba(227, 202, 165, 0.5)' : 'white';
+    const borderColor =
+      item.id === selectedIdFilter ? 'rgba(227, 202, 165, 1)' : 'black';
+
+    return (
+      <FilterPromo
+        item={item}
+        onPress={() => setSelectedIdFilter(item.id)}
+        backgroundColor={backgroundColor}
+        borderColor={borderColor}
+      />
+    );
+  };
   const [search, setSearch] = useState('');
   const [emailError, setEmailError] = useState('');
   const handlerSearch = val => {
@@ -27,58 +99,7 @@ const CategoryDetail = () => {
   const nav = useNavigation();
   return (
     <View style={{flex: 1}}>
-      <View style={styles.headerMain}>
-        <View style={styles.headerContainer}>
-          <Pressable onPress={() => nav.goBack()}>
-            <Icon size={25} name={'arrow-back'} />
-          </Pressable>
-          <View style={styles.inputContainerHeader}>
-            <Pressable>
-              <Text style={{marginLeft: 5}}>
-                {' '}
-                <Icon name={'search'} size={19} color="#232323" />
-              </Text>
-            </Pressable>
-            <TextInput
-              style={[styles.textInputHeader, styles.nunitoSans]}
-              onChangeText={value => handlerSearch(value)}
-              placeholder={'Search here...'}
-              value={search}
-              enablesReturnKeyAutomatically
-              autoCapitalize="none"
-            />
-          </View>
-
-          <Pressable style={styles.iconHeader}>
-            <Text>
-              {' '}
-              <Icon name={'cart-outline'} size={23} color="white" />
-            </Text>
-          </Pressable>
-          <Pressable>
-            <Text style={styles.iconHeader}>
-              {' '}
-              <IconAwesome name={'user-o'} size={20} color="white" />
-            </Text>
-          </Pressable>
-        </View>
-
-        <TouchableOpacity style={[styles.headerContainer, {marginBottom: -10}]}>
-          <Text style={styles.iconHeaderBottom}>
-            {' '}
-            <Icon name={'location-outline'} size={20} color="#232323" />
-          </Text>
-          <Text>Tambah alamat</Text>
-          <Text style={[styles.iconHeaderBottom, {marginTop: 5}]}>
-            {' '}
-            <IconMaterial
-              name={'keyboard-arrow-down'}
-              size={20}
-              color="#232323"
-            />
-          </Text>
-        </TouchableOpacity>
-      </View>
+      <HeaderWithSearchBar home={true} back={true} />
       <ScrollView style={styles.scene}>
         <View style={styles.container}>
           <CarouselC />
@@ -89,7 +110,9 @@ const CategoryDetail = () => {
                   Top seller
                 </Text>
                 <TouchableOpacity onPress={() => nav.navigate('Promo')}>
-                  <Text style={[styles.nunitoSans]}>See More</Text>
+                  <Text style={[styles.nunitoSans, {color: '#AC8B75'}]}>
+                    See more <AntDesign name={'right'} />
+                  </Text>
                 </TouchableOpacity>
               </View>
               <ScrollView horizontal={true} style={styles.cardAlbaiContainer}>
@@ -116,29 +139,13 @@ const CategoryDetail = () => {
           <TouchableOpacity style={styles.filterTitle}>
             <Text style={[styles.filterText, styles.nunitoSans]}>Filter</Text>
           </TouchableOpacity>
-          <ScrollView style={styles.filterContainerScroll} horizontal={true}>
-            <TouchableOpacity style={styles.filterButtonHightLight}>
-              <Text
-                style={[styles.filterTextButtonHightLight, styles.nunitoSans]}>
-                Foods
-              </Text>
-            </TouchableOpacity>
-            <TouchableOpacity style={styles.filterButton}>
-              <Text style={[styles.filterTextButton, styles.nunitoSans]}>
-                Fashion
-              </Text>
-            </TouchableOpacity>
-            <TouchableOpacity style={styles.filterButton}>
-              <Text style={[styles.filterTextButton, styles.nunitoSans]}>
-                Sport
-              </Text>
-            </TouchableOpacity>
-            <TouchableOpacity style={styles.filterButton}>
-              <Text style={[styles.filterTextButton, styles.nunitoSans]}>
-                Otomotive
-              </Text>
-            </TouchableOpacity>
-          </ScrollView>
+          <FlatList
+            data={DATAFILTER}
+            horizontal
+            renderItem={renderItemFilter}
+            keyExtractor={item => item.id}
+            extraData={selectedIdFilter}
+          />
         </View>
         <View style={styles.containerP}>
           <View style={styles.containerPP}>

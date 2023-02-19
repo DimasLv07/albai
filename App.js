@@ -20,9 +20,17 @@ import {NavigationContainer} from '@react-navigation/native';
 import {GestureHandlerRootView} from 'react-native-gesture-handler';
 
 import AppNavigator from './view/AppNavigator';
-
+// import AppNavigator from './view/exam//AppNavigation';
 /* $FlowFixMe[missing-local-annot] The type annotation(s) required by Flow's
  * LTI update could not be added via codemod */
+
+// const App: () => Node = () => {
+//   return (
+//     <NavigationContainer>
+//       <AppNavigation />
+//     </NavigationContainer>
+//   );
+// };
 
 const App: () => Node = () => {
   return (

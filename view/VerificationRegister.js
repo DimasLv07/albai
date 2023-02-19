@@ -1,7 +1,8 @@
 import React, {useState} from 'react';
-import {Text, View, StyleSheet, TouchableOpacity, Image} from 'react-native';
+import {View, StyleSheet, TouchableOpacity, Image} from 'react-native';
 import HideWithKeyboard from 'react-native-hide-with-keyboard';
 import {useNavigation} from '@react-navigation/native';
+import Text from './TextAlbai';
 
 import {ImagesAssets} from '../assets/ImagesAssets';
 

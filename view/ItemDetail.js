@@ -1,6 +1,5 @@
 import React, {useState} from 'react';
 import {
-  Text,
   Image,
   View,
   TouchableOpacity,
@@ -8,9 +7,11 @@ import {
   ScrollView,
   Pressable,
   TextInput,
+  FlatList,
 } from 'react-native';
 
-import {CardPromo, BintangLimaReview} from './components';
+import {CardPromo, BintangLimaReview, HeaderWithSearchBar} from './components';
+import Text from './TextAlbai';
 
 import {ImagesAssets} from '../assets/ImagesAssets';
 import Icon from 'react-native-vector-icons/FontAwesome';
@@ -18,13 +19,174 @@ import {useNavigation, useIsFocused} from '@react-navigation/native';
 import IconIon from 'react-native-vector-icons/Ionicons';
 import IconAwesome from 'react-native-vector-icons/FontAwesome';
 import IconMaterial from 'react-native-vector-icons/MaterialIcons';
+import AntDesign from 'react-native-vector-icons/AntDesign';
 
 // import {useNavigation} from '@react-navigation/native';
 var styles = require('./style/styles');
 
 import CarouselCc from './CarouselBig';
 
+const DATACOLOUR = [
+  {
+    id: 'bd7acbea-c1b1-46c2-aed5-3ad53abb28ba',
+    title: 'Black',
+  },
+  {
+    id: '3ac68afc-c605-48d3-a4f8-fbd91aa97f63',
+    title: 'Soft White',
+  },
+  {
+    id: '58694a0f-3da1-471f-bd96-145571e29d72',
+    title: 'Silver',
+  },
+  {
+    id: '58694a0f-3da1e-471f-bd96-145571e29d72',
+    title: 'Rose Gold',
+  },
+];
+
+const DATATYPE = [
+  {
+    id: 'bd7acSDFSDbea-c1b1-46c2-aed5-3ad53abb28ba',
+    title: '64/4',
+  },
+  {
+    id: '3ac6SDF8afc-c605-48d3-a4f8-fbd91aa97f63',
+    title: '128/4',
+  },
+  {
+    id: '586SD94a0f-3da1-471f-bd96-145571e29d72',
+    title: '128/6',
+  },
+];
+
+const TypesItemDetail = ({
+  item,
+  onPress,
+  borderColor,
+  backgroundColor,
+  textColor,
+}) => (
+  <TouchableOpacity
+    onPress={onPress}
+    style={[
+      styles.filterButtonHightLightItemDetail,
+      {
+        backgroundColor: backgroundColor,
+        borderColor: borderColor,
+        marginRight: 10,
+      },
+    ]}>
+    <Text
+      style={[
+        styles.filterTextButtonHightLight,
+        styles.nunitoSans,
+        {
+          color: 'black',
+        },
+      ]}>
+      {item.title}
+    </Text>
+  </TouchableOpacity>
+);
+
+const ColourTypesItemDetail = ({
+  item,
+  onPress,
+  borderColor,
+  backgroundColor,
+  textColor,
+}) => (
+  <TouchableOpacity
+    onPress={onPress}
+    style={[
+      styles.filterButtonHightLightItemDetail,
+      {
+        backgroundColor: backgroundColor,
+        borderColor: borderColor,
+        marginRight: 10,
+      },
+    ]}>
+    <Text
+      style={[
+        styles.filterTextButtonHightLight,
+        styles.nunitoSans,
+        {
+          color: 'black',
+        },
+      ]}>
+      {item.title}
+    </Text>
+  </TouchableOpacity>
+);
+
 const ItemDetail = () => {
+  const [follow, setFollow] = useState('Follow');
+  const [followBackgroundColor, setFollowBackgroundColor] = useState(false);
+  const [followTextColor, setfollowTextColor] = useState(false);
+  const [isReadMore, setIsReadMore] = useState(false);
+  const [isShowAllReview, setIsShowAllReview] = useState(false);
+  const handlerIsShowAllreview = () => {
+    setIsShowAllReview(true);
+  };
+  const handlerIsShowAllreview1 = () => {
+    setIsShowAllReview(false);
+  };
+  const handlreIsReadMore = () => {
+    if (isReadMore === false) {
+      setIsReadMore(true);
+    } else {
+      setIsReadMore(false);
+    }
+  };
+  const handlerFollow = () => {
+    if (follow === 'Follow') {
+      setFollow('Unfollow');
+      setFollowBackgroundColor(true);
+      setfollowTextColor(true);
+    } else {
+      setFollow('Follow');
+      setFollowBackgroundColor(false);
+      setfollowTextColor(false);
+    }
+  };
+  const [selectedIdColour, setSelectedIdColour] = useState(
+    'bd7acbea-c1b1-46c2-aed5-3ad53abb28ba',
+  );
+  const [selectedIdTypes, setSelectedIdTypes] = useState(
+    'bd7acSDFSDbea-c1b1-46c2-aed5-3ad53abb28ba',
+  );
+  const renderItemColour = ({item}) => {
+    const backgroundColor =
+      item.id === selectedIdColour ? 'rgba(227, 202, 165, 0.5)' : 'white';
+    const borderColor =
+      item.id === selectedIdColour ? 'rgba(227, 202, 165, 1)' : 'black';
+
+    return (
+      <ColourTypesItemDetail
+        item={item}
+        onPress={() => setSelectedIdColour(item.id)}
+        backgroundColor={backgroundColor}
+        borderColor={borderColor}
+      />
+    );
+  };
+
+  const renderItemTypes = ({item}) => {
+    const backgroundColor =
+      item.id === selectedIdTypes ? 'rgba(227, 202, 165, 0.5)' : 'white';
+    const borderColor =
+      item.id === selectedIdTypes ? 'rgba(227, 202, 165, 1)' : 'black';
+
+    return (
+      <TypesItemDetail
+        item={item}
+        onPress={() => setSelectedIdTypes(item.id)}
+        backgroundColor={backgroundColor}
+        borderColor={borderColor}
+      />
+    );
+  };
   const [search, setSearch] = useState('');
   const [emailError, setEmailError] = useState('');
   const handlerSearch = val => {
@@ -34,58 +196,7 @@ const ItemDetail = () => {
   const nav = useNavigation();
   return (
     <View style={{flex: 1}}>
-      <View style={styles.headerMain}>
-        <View style={styles.headerContainer}>
-          <Pressable onPress={() => nav.goBack()}>
-            <IconIon size={25} name={'arrow-back'} />
-          </Pressable>
-          <View style={styles.inputContainerHeader}>
-            <Pressable>
-              <Text style={{marginLeft: 5}}>
-                {' '}
-                <IconIon name={'search'} size={19} color="#232323" />
-              </Text>
-            </Pressable>
-            <TextInput
-              style={[styles.textInputHeader, styles.nunitoSans]}
-              onChangeText={value => handlerSearch(value)}
-              placeholder={'Search here...'}
-              value={search}
-              enablesReturnKeyAutomatically
-              autoCapitalize="none"
-            />
-          </View>
-
-          <Pressable style={styles.iconHeader}>
-            <Text>
-              {' '}
-              <IconIon name={'cart-outline'} size={23} color="white" />
-            </Text>
-          </Pressable>
-          <Pressable>
-            <Text style={styles.iconHeader}>
-              {' '}
-              <IconAwesome name={'user-o'} size={20} color="white" />
-            </Text>
-          </Pressable>
-        </View>
-
-        <TouchableOpacity style={[styles.headerContainer, {marginBottom: -10}]}>
-          <Text style={styles.iconHeaderBottom}>
-            {' '}
-            <IconIon name={'location-outline'} size={20} color="#232323" />
-          </Text>
-          <Text>Tambah alamat</Text>
-          <Text style={[styles.iconHeaderBottom, {marginTop: 5}]}>
-            {' '}
-            <IconMaterial
-              name={'keyboard-arrow-down'}
-              size={20}
-              color="#232323"
-            />
-          </Text>
-        </TouchableOpacity>
-      </View>
+      <HeaderWithSearchBar back={true} />
 
       <ScrollView style={styles.scene}>
         <View style={styles.container}>
@@ -122,48 +233,13 @@ const ItemDetail = () => {
                   </Text>
                   <Text style={styles.nunitoSans}>4 Variants</Text>
                 </View>
-                <ScrollView
-                  style={styles.filterContainerScroll}
-                  horizontal={true}>
-                  <TouchableOpacity
-                    style={styles.filterButtonHightLightItemDetail}>
-                    <Text
-                      style={[
-                        styles.filterTextButtonHightLight,
-                        styles.nunitoSans,
-                        {color: 'black'},
-                      ]}>
-                      Black
-                    </Text>
-                  </TouchableOpacity>
-                  <TouchableOpacity style={styles.filterButton}>
-                    <Text
-                      style={[
-                        styles.filterTextButtonHightLight,
-                        styles.nunitoSans,
-                      ]}>
-                      Soft White
-                    </Text>
-                  </TouchableOpacity>
-                  <TouchableOpacity style={styles.filterButton}>
-                    <Text
-                      style={[
-                        styles.filterTextButtonHightLight,
-                        styles.nunitoSans,
-                      ]}>
-                      Silver
-                    </Text>
-                  </TouchableOpacity>
-                  <TouchableOpacity style={styles.filterButton}>
-                    <Text
-                      style={[
-                        styles.filterTextButtonHightLight,
-                        styles.nunitoSans,
-                      ]}>
-                      Rose Gold
-                    </Text>
-                  </TouchableOpacity>
-                </ScrollView>
+                <FlatList
+                  data={DATACOLOUR}
+                  horizontal
+                  renderItem={renderItemColour}
+                  keyExtractor={item => item.id}
+                  extraData={selectedIdColour}
+                />
               </View>
               <View>
                 <View style={styles.cpluss}>
@@ -172,39 +248,13 @@ const ItemDetail = () => {
                   </Text>
                   <Text>3 Variants</Text>
                 </View>
-                <ScrollView
-                  style={styles.filterContainerScroll}
-                  horizontal={true}>
-                  <TouchableOpacity
-                    style={styles.filterButtonHightLightItemDetail}>
-                    <Text
-                      style={[
-                        styles.filterTextButtonHightLight,
-                        styles.nunitoSans,
-                        {color: 'black'},
-                      ]}>
-                      64/4
-                    </Text>
-                  </TouchableOpacity>
-                  <TouchableOpacity style={styles.filterButton}>
-                    <Text
-                      style={[
-                        styles.filterTextButtonHightLight,
-                        styles.nunitoSans,
-                      ]}>
-                      128/4
-                    </Text>
-                  </TouchableOpacity>
-                  <TouchableOpacity style={styles.filterButton}>
-                    <Text
-                      style={[
-                        styles.filterTextButtonHightLight,
-                        styles.nunitoSans,
-                      ]}>
-                      128/6
-                    </Text>
-                  </TouchableOpacity>
-                </ScrollView>
+                <FlatList
+                  data={DATATYPE}
+                  horizontal
+                  renderItem={renderItemTypes}
+                  keyExtractor={item => item.id}
+                  extraData={selectedIdTypes}
+                />
               </View>
             </View>
             <View style={styles.containerCategory}>
@@ -249,20 +299,38 @@ const ItemDetail = () => {
                 kilat. Desain kokoh dan kekuatan baterai terbaik yang pernah ada
                 di iPhone.(1) Isi Kotak
               </Text>
-              <Text style={[styles.brownText, styles.nunitoSans]}>
-                Read More
-              </Text>
+              {isReadMore ? (
+                <Text style={[styles.productDescDesc, styles.nunitoSans]}>
+                  Pembaruan sistem kamera Pro yang terbesar. Layar Super Retina
+                  XDR dengan ProMotion untuk penggunaan yang terasa lebih cepat
+                  dan responsif.
+                  <TouchableOpacity onPress={handlreIsReadMore}>
+                    <Text style={[styles.brownText, styles.nunitoSans]}>
+                      Show Less
+                    </Text>
+                  </TouchableOpacity>
+                </Text>
+              ) : (
+                <TouchableOpacity
+                  style={{marginLeft: -3}}
+                  onPress={handlreIsReadMore}>
+                  <Text style={[styles.brownText, styles.nunitoSans]}>
+                    {' '}
+                    Read More
+                  </Text>
+                </TouchableOpacity>
+              )}
             </View>
             <View style={[styles.containerCategory, {paddingTop: 0}]}>
               <View style={styles.cpluss}>
-                <View style={styles.albaiPromoMerahContainer}>
+                <TouchableOpacity
+                  onPress={() => nav.navigate('StoreDetail')}
+                  style={styles.albaiPromoMerahContainer}>
                   <Image
                     style={styles.profileToko}
                     source={ImagesAssets.profileToko}
                   />
-                  <TouchableOpacity
-                    onPress={() => nav.navigate('StoreDetail')}
-                    style={styles.profileTokoText}>
+                  <View style={styles.profileTokoText}>
                     <Text style={[styles.brownText, styles.nunitoSans]}>
                       I-Box Official
                     </Text>
@@ -276,11 +344,27 @@ const ItemDetail = () => {
                         Jakarta Kota
                       </Text>
                     </View>
-                  </TouchableOpacity>
-                </View>
-                <TouchableOpacity style={styles.filterButton}>
-                  <Text style={[styles.filterTextButton, styles.nunitoSans]}>
-                    Follow
+                  </View>
+                </TouchableOpacity>
+                <TouchableOpacity
+                  onPress={handlerFollow}
+                  style={[
+                    styles.filterButton,
+                    {
+                      backgroundColor: followBackgroundColor
+                        ? '#AC8B75'
+                        : 'white',
+                    },
+                  ]}>
+                  <Text
+                    style={[
+                      styles.filterTextButton,
+                      styles.nunitoSans,
+                      {
+                        color: followTextColor ? 'white' : '#AC8B75',
+                      },
+                    ]}>
+                    {follow}
                   </Text>
                 </TouchableOpacity>
               </View>
@@ -291,20 +375,41 @@ const ItemDetail = () => {
                       style={styles.bintangItemDetail}
                       source={ImagesAssets.bintang}
                     />
-                    <Text style={[styles.nunitoSans]}> 4.8</Text>
+                    <Text
+                      style={[
+                        styles.nunitoSans,
+                        {fontWeight: 'bold', fontSize: 17, color: '#282828'},
+                      ]}>
+                      {' '}
+                      4.8
+                    </Text>
                   </View>
                   <Text style={[styles.textAlignCenter, styles.nunitoSans]}>
                     average{'\n'}review
                   </Text>
                 </View>
+                <View style={{borderColor: '#D7D7D7', borderLeftWidth: 1}} />
                 <View>
-                  <Text style={[styles.nunitoSans]}>± 1 Hour</Text>
+                  <Text
+                    style={[
+                      styles.nunitoSans,
+                      {fontWeight: 'bold', fontSize: 16, color: '#282828'},
+                    ]}>
+                    ± 1 Hour
+                  </Text>
                   <Text style={[styles.textAlignCenter, styles.nunitoSans]}>
                     order{'\n'}processed
                   </Text>
                 </View>
+                <View style={{borderColor: '#D7D7D7', borderLeftWidth: 1}} />
                 <View>
-                  <Text style={[styles.nunitoSans]}>100%</Text>
+                  <Text
+                    style={[
+                      styles.nunitoSans,
+                      {fontWeight: 'bold', fontSize: 16, color: '#282828'},
+                    ]}>
+                    100%
+                  </Text>
                   <Text style={[styles.textAlignCenter, styles.nunitoSans]}>
                     Order{'\n'}on time
                   </Text>
@@ -316,7 +421,11 @@ const ItemDetail = () => {
                 <Text style={[styles.textCategories, styles.nunitoSans]}>
                   More from this store
                 </Text>
-                <Text style={[styles.nunitoSans]}>See more</Text>
+                <TouchableOpacity onPress={() => nav.navigate('StoreDetail')}>
+                  <Text style={[styles.nunitoSans, {color: '#AC8B75'}]}>
+                    See more <AntDesign name={'right'} />
+                  </Text>
+                </TouchableOpacity>
               </View>
               <ScrollView horizontal={true} style={styles.cardAlbaiContainer}>
                 <View style={styles.cardAlbaiContainer}>
@@ -430,10 +539,128 @@ const ItemDetail = () => {
                   }}
                 />
               </View>
+              {isShowAllReview ? (
+                <View>
+                  <View style={styles.reviewUser}>
+                    <View style={styles.rowJauh}>
+                      <BintangLimaReview />
+                      <Text style={[styles.nunitoSans, {marginRight: 5}]}>
+                        0
+                      </Text>
+                      <Icon name={'thumbs-o-up'} />
+                    </View>
+                    <Image
+                      style={styles.profileUser}
+                      source={ImagesAssets.profileUser}
+                    />
+                    <Text style={[styles.komenUser, styles.nunitoSans]}>
+                      Kondisi aman, pengirim cepat dan tidak ada gangguan,
+                      barang seperti di display, Bintang 5 lah....
+                    </Text>
+                    <Text style={[styles.nunitoSans, styles.tanggalReview]}>
+                      20 Descember 2022 By User123
+                    </Text>
+                    <View
+                      style={{
+                        borderBottomColor: '#D7D7D7',
+                        borderBottomWidth: StyleSheet.hairlineWidth,
+                        marginBottom: 10,
+                      }}
+                    />
+                  </View>
+                  <View style={styles.reviewUser}>
+                    <View style={styles.rowJauh}>
+                      <BintangLimaReview />
+                      <Text style={[styles.nunitoSans, {marginRight: 5}]}>
+                        0
+                      </Text>
+                      <Icon name={'thumbs-o-up'} />
+                    </View>
+                    <Text style={[styles.komenUser, styles.nunitoSans]}>
+                      Kondisi aman, pengirim cepat dan tidak ada gangguan,
+                      barang seperti di display, Bintang 5 lah....
+                    </Text>
+                    <Text style={[styles.nunitoSans, styles.tanggalReview]}>
+                      20 Descember 2022 By User123
+                    </Text>
+                    <View
+                      style={{
+                        borderBottomColor: '#D7D7D7',
+                        borderBottomWidth: StyleSheet.hairlineWidth,
+                        marginBottom: 10,
+                      }}
+                    />
+                  </View>
+                  <View style={styles.reviewUser}>
+                    <View style={styles.rowJauh}>
+                      <BintangLimaReview />
+                      <Text style={[styles.nunitoSans, {marginRight: 5}]}>
+                        0
+                      </Text>
+                      <Icon name={'thumbs-o-up'} />
+                    </View>
+                    <Text style={[styles.komenUser, styles.nunitoSans]}>
+                      Kondisi aman, pengirim cepat dan tidak ada gangguan,
+                      barang seperti di display, Bintang 5 lah....
+                    </Text>
+                    <Text style={[styles.nunitoSans, styles.tanggalReview]}>
+                      20 Descember 2022 By User123
+                    </Text>
+                    <View
+                      style={{
+                        borderBottomColor: '#D7D7D7',
+                        borderBottomWidth: StyleSheet.hairlineWidth,
+                        marginBottom: 10,
+                      }}
+                    />
+                  </View>
+                  <View style={styles.reviewUser}>
+                    <View style={styles.rowJauh}>
+                      <BintangLimaReview />
+                      <Text style={[styles.nunitoSans, {marginRight: 5}]}>
+                        0
+                      </Text>
+                      <Icon name={'thumbs-o-up'} />
+                    </View>
+                    <Text style={[styles.komenUser, styles.nunitoSans]}>
+                      Kondisi aman, pengirim cepat dan tidak ada gangguan,
+                      barang seperti di display, Bintang 5 lah....
+                    </Text>
+                    <Text style={[styles.nunitoSans, styles.tanggalReview]}>
+                      20 Descember 2022 By User123
+                    </Text>
+                    <View
+                      style={{
+                        borderBottomColor: '#D7D7D7',
+                        borderBottomWidth: StyleSheet.hairlineWidth,
+                        marginBottom: 10,
+                      }}
+                    />
+                  </View>
+                </View>
+              ) : (
+                <View></View>
+              )}
             </View>
-            <Text style={[styles.seeAllReview, styles.brownText]}>
-              See All Reviews
-            </Text>
+
+            {isShowAllReview ? (
+              <TouchableOpacity
+                style={{marginLeft: -3}}
+                onPress={handlerIsShowAllreview1}>
+                <Text style={[styles.seeAllReview, styles.brownText]}>
+                  See Less Reviews
+                </Text>
+              </TouchableOpacity>
+            ) : (
+              <TouchableOpacity
+                style={{marginLeft: -3}}
+                onPress={handlerIsShowAllreview}>
+                <Text style={[styles.seeAllReview, styles.brownText]}>
+                  See All Reviews
+                </Text>
+              </TouchableOpacity>
+            )}
+
             <View
               style={{
                 borderBottomColor: '#D7D7D7',
@@ -447,7 +674,7 @@ const ItemDetail = () => {
       <View style={[styles.row, styles.cartContainer]}>
         <TouchableOpacity
           style={styles.chatNowButton}
-          onPress={() => nav.navigate('StoreDetail')}>
+          onPress={() => nav.navigate('ChatDetail')}>
           <IconMaterial color="#AC8B75" size={15} name={'chat'} />
           <Text style={styles.chatNowText}>Chat Now</Text>
         </TouchableOpacity>

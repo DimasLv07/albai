@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
+import Text from './TextAlbai';
+
 import {
-  Text,
   View,
   TouchableOpacity,
   ScrollView,
@@ -45,7 +46,7 @@ const CreateStoreDomain = () => {
                 placeholder={''}
               />
             </View>
-            <Text>You can’t change your store name after this!</Text>
+            <Text style={{ fontSize: 11 }}>You can’t change your store name after this!</Text>
             <Text style={[styles.labelInput, styles.nunitoSans]}>
               Domain Name
             </Text>

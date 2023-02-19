@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
+import Text from './TextAlbai';
+
 import {
-  Text,
   View,
   TouchableOpacity,
   ScrollView,
@@ -12,8 +13,15 @@ import {
 import {Searchbar} from 'react-native-paper';
 
 import {TabView, SceneMap, TabBar} from 'react-native-tab-view';
+import {ImagesAssets} from '../assets/ImagesAssets';
+import AntDesign from 'react-native-vector-icons/AntDesign';
 
-import {CardCategories, CardPromo, CardTab} from './components';
+import {
+  CardCategories,
+  CardPromo,
+  CardTab,
+  HeaderWithSearchBar,
+} from './components';
 import Icon from 'react-native-vector-icons/Ionicons';
 import IconAwesome from 'react-native-vector-icons/FontAwesome';
 import IconMaterial from 'react-native-vector-icons/MaterialIcons';
@@ -132,57 +140,7 @@ const HomeScreen = () => {
   ]);
   return (
     <View style={styles.container}>
-      <View style={styles.headerMain}>
-        <View style={styles.headerContainer}>
-          <View style={styles.inputContainerHeader}>
-            <Pressable>
-              <Text style={{marginLeft: 5}}>
-                {' '}
-                <Icon name={'search'} size={19} color="#232323" />
-              </Text>
-            </Pressable>
-            <TextInput
-              style={[styles.textInputHeader, styles.nunitoSans]}
-              onChangeText={value => handlerSearch(value)}
-              placeholder={'Search here...'}
-              value={search}
-              enablesReturnKeyAutomatically
-              autoCapitalize="none"
-            />
-          </View>
-
-          <Pressable
-            onPress={() => nav.navigate('KeranjangScreen')}
-            style={styles.iconHeader}>
-            <Text>
-              {' '}
-              <Icon name={'cart-outline'} size={23} color="white" />
-            </Text>
-          </Pressable>
-          <Pressable onPress={() => nav.navigate('Profile')}>
-            <Text style={styles.iconHeader}>
-              {' '}
-              <IconAwesome name={'user-o'} size={20} color="white" />
-            </Text>
-          </Pressable>
-        </View>
-
-        <TouchableOpacity style={[styles.headerContainer, {marginBottom: -10}]}>
-          <Text style={styles.iconHeaderBottom}>
-            {' '}
-            <Icon name={'location-outline'} size={20} color="#232323" />
-          </Text>
-          <Text>Tambah alamat</Text>
-          <Text style={[styles.iconHeaderBottom, {marginTop: 5}]}>
-            {' '}
-            <IconMaterial
-              name={'keyboard-arrow-down'}
-              size={20}
-              color="#232323"
-            />
-          </Text>
-        </TouchableOpacity>
-      </View>
+      <HeaderWithSearchBar home={true} style={{width: '70%'}} />
       <ScrollView style={styles.scene} contentContainerStyle={{flexGrow: 1}}>
         <View style={styles.container}>
           <CarouselC />
@@ -193,25 +151,61 @@ const HomeScreen = () => {
                   Categories
                 </Text>
                 <TouchableOpacity onPress={() => nav.navigate('Categories')}>
-                  <Text style={[styles.nunitoSans]}>See More</Text>
+                  <Text style={[styles.nunitoSans, {color: '#AC8B75'}]}>
+                    See more <AntDesign name={'right'} />
+                  </Text>
                 </TouchableOpacity>
               </View>
               <ScrollView horizontal={true}>
                 <View>
                   <View style={styles.cardCategoriesContainer}>
                     <View style={styles.cardCategoriesContainer}>
-                      <CardCategories />
-                      <CardCategories />
-                      <CardCategories />
-                      <CardCategories />
+                      <CardCategories
+                        image={ImagesAssets.foodCategory}
+                        name="Foods"
+                      />
+                      <CardCategories
+                        image={ImagesAssets.computerCategory}
+                        name="Computer & Accesories"
+                        style={{paddingTop: 0}}
+                      />
+                      <CardCategories
+                        image={ImagesAssets.handphoneCategory}
+                        style={{paddingTop: 0}}
+                        name="Handphone & Accesories"
+                      />
+                      <CardCategories
+                        image={ImagesAssets.manFashionCategory}
+                        name="Man Fashion"
+                      />
+                      <CardCategories
+                        image={ImagesAssets.womanFashionCategory}
+                        name="Woman Fashion"
+                      />
                     </View>
                   </View>
                   <View style={styles.cardCategoriesContainer1}>
                     <View style={styles.cardCategoriesContainer1}>
-                      <CardCategories />
-                      <CardCategories />
-                      <CardCategories />
-                      <CardCategories />
+                      <CardCategories
+                        image={ImagesAssets.beautyCategory}
+                        name="Cosmetic & Beauty "
+                      />
+                      <CardCategories
+                        image={ImagesAssets.homeApplianceCategory}
+                        name="Home appliances"
+                      />
+                      <CardCategories
+                        image={ImagesAssets.muslimCategory}
+                        name="Muslim Fashion"
+                      />
+                      <CardCategories
+                        image={ImagesAssets.sportCategory}
+                        name="Sports"
+                      />
+                      <CardCategories
+                        image={ImagesAssets.otomativeCategory}
+                        name="Otomative"
+                      />
                     </View>
                   </View>
                 </View>
@@ -223,7 +217,9 @@ const HomeScreen = () => {
                   Al-bai’ Promo
                 </Text>
                 <TouchableOpacity onPress={() => nav.navigate('Promo')}>
-                  <Text style={[styles.nunitoSans]}>See More</Text>
+                  <Text style={[styles.nunitoSans, {color: '#AC8B75'}]}>
+                    See more <AntDesign name={'right'} />
+                  </Text>
                 </TouchableOpacity>
               </View>
               <ScrollView horizontal={true} style={styles.cardAlbaiContainer}>
@@ -248,16 +244,35 @@ const HomeScreen = () => {
           renderTabBar={props => (
             <TabBar
               {...props}
-              renderLabel={({route, color}) => (
-                <Text
-                  style={{
-                    textAlign: 'center',
-                    fontSize: 10,
-                    color: 'black',
-                  }}>
-                  {route.title}
-                </Text>
-              )}
+              activeColor={'#000'}
+              inactiveColor={'red'}
+              renderLabel={({route, color, focused}) => {
+                if (focused) {
+                  return (
+                    <Text
+                      style={{
+                        textAlign: 'center',
+                        fontSize: 10,
+                        color: 'black',
+                      }}>
+                      {route.title}
+                    </Text>
+                  );
+                } else {
+                  return (
+                    <Text
+                      style={{
+                        textAlign: 'center',
+                        fontSize: 10,
+                        color: 'black',
+                        opacity: 0.3,
+                      }}>
+                      {route.title}
+                    </Text>
+                  );
+                }
+              }}
+              indicatorStyle={{backgroundColor: '#AC8B75'}}
               style={{backgroundColor: 'white'}}
             />
           )}

@@ -1,6 +1,7 @@
 import React, {useState, useEffect} from 'react';
+import Text from './TextAlbai';
+
 import {
-  Text,
   Image,
   View,
   TextInput,
